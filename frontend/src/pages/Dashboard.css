@@ -1,0 +1,870 @@
+/* =========================================================
+   AI UNIVERSITY HELPDESK
+   DASHBOARD CSS
+   Responsive: Desktop + Laptop + Tablet + Mobile
+   ========================================================= */
+
+
+/* =========================================================
+   DASHBOARD MAIN
+   ========================================================= */
+
+.dashboard-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(99, 102, 241, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(139, 92, 246, 0.12),
+      transparent 35%
+    ),
+    #f1f5f9;
+
+  color: #1e293b;
+}
+
+
+/* =========================================================
+   DASHBOARD CONTENT
+   ========================================================= */
+
+.dashboard-content {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DASHBOARD HEADER
+   ========================================================= */
+
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed,
+    #2563eb
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dashboard-header p {
+  margin-top: 8px;
+  margin-bottom: 0;
+  color: #64748b;
+  font-size: 16px;
+}
+
+.dashboard-header .text-primary {
+  color: #6366f1 !important;
+}
+
+
+/* =========================================================
+   CHAT CARD
+   ========================================================= */
+
+.chat-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 26px;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.78);
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   SEARCH BOX
+   ========================================================= */
+
+.chat-card > .form-control:first-child {
+  width: 100%;
+  box-sizing: border-box;
+
+  height: 48px;
+
+  padding: 10px 16px;
+
+  border-radius: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  background: rgba(248, 250, 252, 0.9);
+
+  color: #1e293b;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: all 0.25s ease;
+}
+
+.chat-card > .form-control:first-child:focus {
+  border-color: #6366f1;
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+
+/* =========================================================
+   CHAT INPUT
+   ========================================================= */
+
+.chat-input {
+  width: 100%;
+
+  margin-top: 24px;
+
+  padding: 16px 18px;
+
+  min-height: 120px;
+
+  resize: vertical;
+
+  box-sizing: border-box;
+
+  border-radius: 14px;
+
+  border: 1px solid #dbe2ea;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  color: #1e293b;
+
+  font-size: 16px;
+
+  line-height: 1.5;
+
+  outline: none;
+
+  transition: all 0.25s ease;
+}
+
+.chat-input:focus {
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.chat-input::placeholder {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   SUGGESTED QUESTIONS
+   ========================================================= */
+
+.chat-card h5 {
+  margin-top: 8px;
+  margin-bottom: 14px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #334155;
+}
+
+
+/* =========================================================
+   SUGGESTION BUTTONS
+   ========================================================= */
+
+.btn-outline-primary {
+  border-radius: 10px !important;
+
+  padding: 9px 14px !important;
+
+  font-size: 14px !important;
+
+  font-weight: 500 !important;
+
+  border: 1px solid #6366f1 !important;
+
+  color: #4f46e5 !important;
+
+  background: transparent !important;
+
+  transition: all 0.25s ease !important;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  ) !important;
+
+  color: white !important;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 15px rgba(99, 102, 241, 0.2);
+}
+
+
+/* =========================================================
+   BOTTOM CHAT ACTIONS
+   ========================================================= */
+
+.chat-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 20px;
+
+  flex-wrap: wrap;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   ALL ACTION BUTTONS
+   ========================================================= */
+
+.chat-actions .btn {
+  min-height: 48px;
+
+  padding: 12px 20px;
+
+  border-radius: 12px;
+
+  border: none;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.chat-actions .btn:hover {
+  transform: translateY(-2px);
+}
+
+.chat-actions .btn:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   ASK AI BUTTON
+   ========================================================= */
+
+.chat-actions .btn-primary {
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  );
+
+  color: white;
+
+  box-shadow:
+    0 7px 18px rgba(99, 102, 241, 0.25);
+}
+
+.chat-actions .btn-primary:hover {
+  box-shadow:
+    0 10px 25px rgba(99, 102, 241, 0.35);
+}
+
+
+/* =========================================================
+   SPEAK BUTTON
+   ========================================================= */
+
+.chat-actions .btn-danger {
+  background: linear-gradient(
+    135deg,
+    #ef4444,
+    #ec4899
+  );
+
+  color: white;
+
+  box-shadow:
+    0 7px 18px rgba(239, 68, 68, 0.2);
+}
+
+.chat-actions .btn-danger:hover {
+  box-shadow:
+    0 10px 25px rgba(239, 68, 68, 0.3);
+}
+
+
+/* =========================================================
+   DOWNLOAD BUTTON
+   ========================================================= */
+
+.chat-actions .btn-success {
+  background: linear-gradient(
+    135deg,
+    #10b981,
+    #06b6d4
+  );
+
+  color: white;
+
+  box-shadow:
+    0 7px 18px rgba(16, 185, 129, 0.2);
+}
+
+.chat-actions .btn-success:hover {
+  box-shadow:
+    0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+
+/* =========================================================
+   LOADING BOX
+   ========================================================= */
+
+.loading-box {
+  margin: 18px 0;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background: rgba(219, 234, 254, 0.8);
+
+  color: #1e40af;
+
+  text-align: center;
+
+  font-weight: 600;
+
+  border: 1px solid rgba(147, 197, 253, 0.4);
+}
+
+.loading-box p {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CHAT MESSAGES AREA
+   ========================================================= */
+
+.chat-card > div {
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+  .dashboard-content {
+    margin-left: 230px;
+
+    width: calc(100% - 230px);
+
+    padding: 25px;
+  }
+
+  .dashboard-header h2 {
+    font-size: 26px;
+  }
+
+  .chat-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE / TABLET SIDEBAR AREA
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .dashboard-page {
+    display: block;
+
+    width: 100%;
+
+    min-height: 100vh;
+  }
+
+
+  .dashboard-content {
+    margin-left: 0;
+
+    width: 100%;
+
+    padding: 20px 16px 30px;
+
+    box-sizing: border-box;
+  }
+
+
+  .dashboard-header {
+    margin-bottom: 18px;
+  }
+
+
+  .dashboard-header h2 {
+    font-size: 23px;
+
+    line-height: 1.3;
+  }
+
+
+  .dashboard-header p {
+    font-size: 14px;
+  }
+
+
+  .chat-card {
+    padding: 18px;
+
+    border-radius: 18px;
+  }
+
+
+  .chat-input {
+    min-height: 110px;
+
+    margin-top: 20px;
+
+    font-size: 15px;
+  }
+
+
+  .chat-actions {
+    gap: 12px;
+
+    margin-top: 18px;
+  }
+
+
+  .chat-actions .btn {
+    flex: 1;
+
+    min-width: 130px;
+
+    padding: 12px 14px;
+
+    font-size: 14px;
+  }
+
+
+  .btn-outline-primary {
+    font-size: 13px !important;
+
+    padding: 8px 11px !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .dashboard-content {
+    padding: 16px 12px 25px;
+  }
+
+
+  .dashboard-header h2 {
+    font-size: 21px;
+  }
+
+
+  .dashboard-header p {
+    font-size: 13px;
+  }
+
+
+  .chat-card {
+    padding: 14px;
+
+    border-radius: 16px;
+  }
+
+
+  .chat-card > .form-control:first-child {
+    height: 44px;
+
+    font-size: 14px;
+  }
+
+
+  .chat-input {
+    min-height: 105px;
+
+    padding: 14px;
+
+    font-size: 14px;
+  }
+
+
+  .chat-actions {
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 10px;
+  }
+
+
+  .chat-actions .btn {
+    width: 100%;
+
+    min-width: 100%;
+
+    flex: none;
+
+    min-height: 48px;
+  }
+
+
+  .btn-outline-primary {
+    width: 100%;
+
+    margin-right: 0 !important;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .dashboard-content {
+    padding: 12px 9px 20px;
+  }
+
+
+  .dashboard-header h2 {
+    font-size: 19px;
+  }
+
+
+  .chat-card {
+    padding: 12px;
+  }
+
+
+  .chat-input {
+    min-height: 100px;
+  }
+
+
+  .chat-actions .btn {
+    font-size: 13px;
+
+    padding: 11px;
+  }
+
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark-mode {
+  background: #0f172a;
+
+  color: #f8fafc;
+}
+
+
+body.dark-mode .dashboard-page {
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(99, 102, 241, 0.15),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(139, 92, 246, 0.12),
+      transparent 35%
+    ),
+    #0f172a;
+}
+
+
+body.dark-mode .dashboard-content {
+  background: transparent;
+
+  color: white;
+}
+
+
+body.dark-mode .dashboard-header h2 {
+  background: linear-gradient(
+    135deg,
+    #818cf8,
+    #a78bfa,
+    #60a5fa
+  );
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+
+body.dark-mode .dashboard-header p {
+  color: #cbd5e1;
+}
+
+
+body.dark-mode .chat-card {
+  background: rgba(15, 23, 42, 0.82);
+
+  border-color: rgba(148, 163, 184, 0.15);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+
+body.dark-mode .chat-card > .form-control:first-child {
+  background: #1e293b;
+
+  color: white;
+
+  border-color: #475569;
+}
+
+
+body.dark-mode .chat-card > .form-control:first-child:focus {
+  background: #1e293b;
+
+  border-color: #818cf8;
+}
+
+
+body.dark-mode .chat-card h5 {
+  color: #e2e8f0;
+}
+
+
+body.dark-mode .chat-input {
+  background: #1e293b;
+
+  color: white;
+
+  border-color: #475569;
+}
+
+
+body.dark-mode .chat-input:focus {
+  border-color: #818cf8;
+
+  box-shadow:
+    0 0 0 4px rgba(129, 140, 248, 0.12);
+}
+
+
+body.dark-mode .chat-input::placeholder {
+  color: #94a3b8;
+}
+
+
+body.dark-mode .btn-outline-primary {
+  color: #a5b4fc !important;
+
+  border-color: #818cf8 !important;
+}
+
+
+body.dark-mode .btn-outline-primary:hover {
+  background: #6366f1 !important;
+
+  color: white !important;
+}
+
+
+body.dark-mode .loading-box {
+  background: #1e293b;
+
+  color: #bfdbfe;
+
+  border-color: #334155;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.35);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   PREVENT HORIZONTAL SCROLL
+   ========================================================= */
+
+html,
+body,
+#root {
+  max-width: 100%;
+
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   MOBILE WIDTH FIX
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .dashboard-page {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .dashboard-content {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    padding: 18px 14px 30px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .chat-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .chat-input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .chat-actions {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .chat-actions .btn {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .dashboard-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .chat-card {
+    padding: 12px;
+  }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE DASHBOARD
+===================================================== */
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 75px 15px 25px !important;
+    box-sizing: border-box;
+  }
+
+  .dashboard-page {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 70px 10px 20px !important;
+  }
+}

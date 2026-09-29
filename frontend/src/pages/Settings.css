@@ -1,0 +1,545 @@
+/* =====================================================
+   SETTINGS PAGE
+===================================================== */
+
+.settings-page {
+  min-height: 100vh;
+  width: 100%;
+
+  padding: 40px 20px;
+
+  box-sizing: border-box;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.settings-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.settings-card {
+  width: 100%;
+
+  border-radius: 18px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.settings-header {
+  text-align: center;
+}
+
+.settings-header h2 {
+  margin: 0;
+
+  font-size: 30px;
+
+  font-weight: 700;
+}
+
+.settings-header p {
+  margin: 8px 0 0;
+
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   HR
+===================================================== */
+
+.settings-card hr {
+  border: none;
+
+  border-top: 1px solid;
+
+  margin: 25px 0;
+}
+
+
+/* =====================================================
+   SETTING ROW
+===================================================== */
+
+.setting-row {
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+/* =====================================================
+   SETTING INFO
+===================================================== */
+
+.setting-info {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-width: 0;
+}
+
+.setting-icon {
+
+  width: 48px;
+  height: 48px;
+
+  min-width: 48px;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 23px;
+}
+
+.setting-info h5 {
+
+  margin: 0 0 5px;
+
+  font-size: 17px;
+}
+
+.setting-info p {
+
+  margin: 0;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   DARK MODE BUTTON
+===================================================== */
+
+.toggle-btn {
+
+  width: 80px;
+  height: 40px;
+
+  border: none;
+
+  border-radius: 22px;
+
+  color: white;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 4px;
+
+  transition: 0.3s ease;
+}
+
+.toggle-circle {
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 15px;
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+.language-select {
+
+  width: 180px;
+
+  padding: 10px 12px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   NOTIFICATION SWITCH
+===================================================== */
+
+.switch {
+
+  position: relative;
+
+  display: inline-block;
+
+  width: 52px;
+  height: 28px;
+
+  flex-shrink: 0;
+}
+
+.switch input {
+
+  opacity: 0;
+
+  width: 0;
+  height: 0;
+}
+
+.slider {
+
+  position: absolute;
+
+  cursor: pointer;
+
+  inset: 0;
+
+  border-radius: 30px;
+
+  transition: 0.3s;
+}
+
+.slider:before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 22px;
+  height: 22px;
+
+  left: 3px;
+  bottom: 3px;
+
+  background: white;
+
+  border-radius: 50%;
+
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider:before {
+
+  transform: translateX(24px);
+}
+
+
+/* =====================================================
+   ================= DARK THEME ========================
+===================================================== */
+
+body.dark-mode {
+
+  background: #0f172a;
+
+  color: #e2e8f0;
+}
+
+body.dark-mode .settings-page {
+
+  background: #0f172a;
+
+  color: #e2e8f0;
+}
+
+body.dark-mode .settings-card {
+
+  background: #1e293b;
+
+  border: 1px solid #334155;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode .settings-header h2 {
+
+  color: #f8fafc;
+}
+
+body.dark-mode .settings-header p {
+
+  color: #94a3b8;
+}
+
+body.dark-mode .settings-card hr {
+
+  border-color: #334155;
+}
+
+body.dark-mode .setting-info h5 {
+
+  color: #f8fafc;
+}
+
+body.dark-mode .setting-info p {
+
+  color: #94a3b8;
+}
+
+body.dark-mode .setting-icon {
+
+  background: #334155;
+}
+
+body.dark-mode .toggle-btn {
+
+  background: #2563eb;
+}
+
+body.dark-mode .language-select {
+
+  background: #0f172a;
+
+  color: #f8fafc;
+
+  border: 1px solid #475569;
+}
+
+body.dark-mode .slider {
+
+  background: #2563eb;
+}
+
+
+/* =====================================================
+   ================= LIGHT THEME =======================
+===================================================== */
+
+body.light-mode {
+
+  background: #f8fafc;
+
+  color: #172033;
+}
+
+body.light-mode .settings-page {
+
+  background: #f8fafc;
+
+  color: #172033;
+}
+
+body.light-mode .settings-card {
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .settings-header h2 {
+
+  color: #172033;
+}
+
+body.light-mode .settings-header p {
+
+  color: #6b7280;
+}
+
+body.light-mode .settings-card hr {
+
+  border-color: #e5e7eb;
+}
+
+body.light-mode .setting-info h5 {
+
+  color: #172033;
+}
+
+body.light-mode .setting-info p {
+
+  color: #6b7280;
+}
+
+body.light-mode .setting-icon {
+
+  background: #eef2ff;
+}
+
+body.light-mode .toggle-btn {
+
+  background: #64748b;
+}
+
+body.light-mode .language-select {
+
+  background: white;
+
+  color: #172033;
+
+  border: 1px solid #d1d5db;
+}
+
+body.light-mode .slider {
+
+  background: #9ca3af;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 767px) {
+
+  .settings-page {
+
+    padding: 75px 12px 25px;
+  }
+
+  .settings-card {
+
+    padding: 20px;
+
+    border-radius: 14px;
+  }
+
+  .settings-header h2 {
+
+    font-size: 24px;
+  }
+
+  .setting-row {
+
+    align-items: flex-start;
+  }
+
+  .setting-info {
+
+    gap: 10px;
+  }
+
+  .setting-icon {
+
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    font-size: 20px;
+  }
+
+  .setting-info h5 {
+
+    font-size: 15px;
+  }
+
+  .setting-info p {
+
+    font-size: 12px;
+  }
+
+  .language-select {
+
+    width: 130px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .settings-page {
+
+    padding: 70px 10px 20px;
+  }
+
+  .settings-card {
+
+    padding: 16px;
+  }
+
+  .setting-row {
+
+    flex-wrap: wrap;
+  }
+
+  .setting-info {
+
+    width: 100%;
+  }
+
+  .toggle-btn {
+
+    margin-left: 52px;
+  }
+
+  .language-select {
+
+    width: calc(100% - 52px);
+
+    margin-left: 52px;
+  }
+
+  .switch {
+
+    margin-left: 52px;
+  }
+
+}

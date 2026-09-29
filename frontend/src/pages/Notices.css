@@ -1,0 +1,413 @@
+/* ================================
+   NOTICES PAGE
+================================ */
+
+.notices-page {
+  min-height: 100vh;
+  display: flex;
+  background: #f5f7fb;
+}
+
+/* ================================
+   MAIN CONTENT
+================================ */
+
+.notices-content {
+  flex: 1;
+  padding: 40px;
+  margin-left: 250px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.notices-header {
+  background: white;
+  border-radius: 16px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.notices-header h1 {
+  margin: 0;
+  font-size: 30px;
+  color: #1f2937;
+}
+
+.notices-header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ================================
+   NOTICE LIST
+================================ */
+
+.notices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ================================
+   NOTICE CARD
+================================ */
+
+.notice-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: 0.2s ease;
+  box-sizing: border-box;
+}
+
+.notice-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+}
+
+/* ================================
+   NOTICE TOP
+================================ */
+
+.notice-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.notice-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.notice-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.notice-title-area h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #111827;
+  overflow-wrap: break-word;
+}
+
+/* ================================
+   CATEGORY
+================================ */
+
+.notice-category {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ================================
+   DESCRIPTION
+================================ */
+
+.notice-description {
+  margin-top: 18px;
+  padding-left: 63px;
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.notice-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eeeeee;
+  padding-left: 63px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* ================================
+   EMPTY
+================================ */
+
+.empty-notices {
+  background: white;
+  border-radius: 16px;
+  padding: 70px 30px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.empty-icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.empty-notices h2 {
+  margin: 0;
+  color: #374151;
+}
+
+.empty-notices p {
+  color: #6b7280;
+}
+
+/* ================================
+   ERROR
+================================ */
+
+.notice-error {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+/* ================================
+   LOADING
+================================ */
+
+.notice-message {
+  background: white;
+  border-radius: 16px;
+  padding: 50px;
+  text-align: center;
+}
+
+.notice-loader {
+  width: 35px;
+  height: 35px;
+  margin: 0 auto 15px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #4f46e5;
+  border-radius: 50%;
+  animation: noticeSpin 1s linear infinite;
+}
+
+@keyframes noticeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 992px) {
+
+  .notices-content {
+    margin-left: 220px;
+    padding: 30px 20px;
+  }
+
+  .notices-header {
+    padding: 22px;
+  }
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .notices-page {
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /*
+     Sidebar becomes normal/mobile width.
+     If your Sidebar has its own mobile CSS,
+     this prevents the notices content from
+     being pushed outside the screen.
+  */
+
+  .notices-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 20px 15px 30px;
+    box-sizing: border-box;
+  }
+
+  /* HEADER */
+
+  .notices-header {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 18px;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  .notices-header h1 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .notices-header p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* NOTICE LIST */
+
+  .notices-list {
+    width: 100%;
+    gap: 14px;
+  }
+
+  /* NOTICE CARD */
+
+  .notice-card {
+    width: 100%;
+    padding: 18px;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  /* TOP */
+
+  .notice-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .notice-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .notice-title-area h2 {
+    font-size: 17px;
+    line-height: 1.4;
+    margin-bottom: 7px;
+  }
+
+  .notice-category {
+    font-size: 11px;
+    padding: 4px 9px;
+  }
+
+  /* DESCRIPTION */
+
+  .notice-description {
+    margin-top: 15px;
+    padding-left: 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+
+  .notice-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+    padding-left: 0;
+    font-size: 12px;
+  }
+
+  /* EMPTY */
+
+  .empty-notices {
+    width: 100%;
+    padding: 50px 20px;
+    box-sizing: border-box;
+  }
+
+  .empty-icon {
+    font-size: 45px;
+  }
+
+  .empty-notices h2 {
+    font-size: 20px;
+  }
+
+  .empty-notices p {
+    font-size: 14px;
+  }
+
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .notices-content {
+    padding: 15px 10px 25px;
+  }
+
+  .notices-header {
+    padding: 17px;
+    border-radius: 12px;
+  }
+
+  .notices-header h1 {
+    font-size: 21px;
+  }
+
+  .notices-header p {
+    font-size: 13px;
+  }
+
+  .notice-card {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .notice-top {
+    gap: 9px;
+  }
+
+  .notice-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    font-size: 18px;
+  }
+
+  .notice-title-area h2 {
+    font-size: 16px;
+  }
+
+  .notice-description {
+    font-size: 13px;
+  }
+
+  .notice-footer {
+    font-size: 11px;
+  }
+
+}

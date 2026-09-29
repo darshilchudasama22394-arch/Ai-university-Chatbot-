@@ -1,0 +1,678 @@
+/* =====================================================
+   HOME PAGE
+===================================================== */
+/* =====================================================
+   HOME PAGE
+===================================================== */
+
+/* =====================================================
+   HOME PAGE
+===================================================== */
+
+.home-page {
+  min-height: 100vh;
+  width: 100%;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed,
+    #3b82f6
+  );
+
+  overflow-x: hidden;
+}
+
+
+/* =====================================================
+   HOME BUTTON CONTAINER
+===================================================== */
+
+.home-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =====================================================
+   GET STARTED + LOGIN
+   SAME AS NAVBAR BUTTON
+===================================================== */
+
+.home-action-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 145px;
+  height: 48px;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  /* Same yellow as Navbar */
+  background: #facc15;
+
+  border: 2px solid #facc15;
+
+  border-radius: 8px;
+
+  /* BLACK/DARK FONT */
+  color: #000000 !important;
+
+  text-decoration: none !important;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.home-action-btn:hover {
+  background: #eab308;
+
+  border-color: #eab308;
+
+  /* Keep font black */
+  color: #000000 !important;
+
+  text-decoration: none !important;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(234, 179, 8, 0.4);
+}
+
+
+/* =====================================================
+   VISITED
+===================================================== */
+
+.home-action-btn:visited {
+  color: #000000 !important;
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.home-action-btn:active {
+  color: #000000 !important;
+
+  transform: translateY(0);
+
+  box-shadow: none;
+}
+
+
+/* =====================================================
+   FOCUS
+===================================================== */
+
+.home-action-btn:focus {
+  color: #000000 !important;
+
+  outline: none;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .home-buttons {
+    gap: 12px;
+  }
+
+  .home-action-btn {
+    width: 140px;
+    height: 46px;
+
+    font-size: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .home-buttons {
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .home-action-btn {
+    width: 180px;
+
+    height: 46px;
+
+    font-size: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   HOME BUTTON CONTAINER
+===================================================== */
+
+.home-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =====================================================
+   GET STARTED + LOGIN
+   SAME COLOR
+   SAME SIZE
+   SAME DESIGN
+===================================================== */
+
+.home-action-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 145px;
+  height: 48px;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: #facc15;
+
+  border: 2px solid #facc15;
+
+  border-radius: 8px;
+
+  color: #172033;
+
+  text-decoration: none;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.home-action-btn:hover {
+  background: #eab308;
+
+  border-color: #eab308;
+
+  color: #172033;
+
+  text-decoration: none;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(234, 179, 8, 0.4);
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.home-action-btn:active {
+  transform: translateY(0);
+
+  box-shadow: none;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .home-buttons {
+    gap: 12px;
+  }
+
+  .home-action-btn {
+    width: 140px;
+    height: 46px;
+
+    font-size: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .home-buttons {
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .home-action-btn {
+    width: 180px;
+
+    height: 46px;
+
+    font-size: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.home-hero {
+  width: 100%;
+  min-height: 620px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 80px 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.home-container {
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   MAIN TITLE
+===================================================== */
+
+.home-title {
+  margin: 0;
+
+  font-size: clamp(
+    42px,
+    7vw,
+    76px
+  );
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -1px;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.home-subtitle {
+  max-width: 700px;
+
+  margin: 28px auto 0;
+
+  font-size: clamp(
+    17px,
+    2.5vw,
+    22px
+  );
+
+  line-height: 1.6;
+
+  color: rgba(255, 255, 255, 0.92);
+}
+
+
+/* =====================================================
+   BUTTON CONTAINER
+===================================================== */
+
+.home-buttons {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 18px;
+
+  margin-top: 45px;
+}
+
+
+/* =====================================================
+   COMMON BUTTON
+===================================================== */
+
+.home-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+
+  min-height: 52px;
+
+  padding: 13px 28px;
+
+  border-radius: 10px;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+/* =====================================================
+   GET STARTED BUTTON
+===================================================== */
+
+.home-btn-register {
+  background: #facc15;
+
+  color: #111827;
+
+  border: 2px solid #facc15;
+
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* GET STARTED HOVER */
+
+.home-btn-register:hover {
+  background: #fde047;
+
+  color: #111827;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.home-btn-login {
+  background: transparent;
+
+  color: #ffffff;
+
+  border: 2px solid #ffffff;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+
+/* LOGIN HOVER */
+
+.home-btn-login:hover {
+  background: #ffffff;
+
+  color: #4f46e5;
+
+  border-color: #ffffff;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   BUTTON ACTIVE
+===================================================== */
+
+.home-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   BUTTON FOCUS
+===================================================== */
+
+.home-btn:focus {
+  outline: none;
+}
+
+
+/* =====================================================
+   KEYBOARD ACCESSIBILITY
+===================================================== */
+
+.home-btn:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+
+  outline-offset: 4px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 991px) {
+
+  .home-hero {
+    min-height: 560px;
+
+    padding:
+      70px 20px;
+  }
+
+  .home-title {
+    font-size: 55px;
+  }
+
+  .home-subtitle {
+    font-size: 19px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 767px) {
+
+  .home-hero {
+    min-height: 520px;
+
+    padding:
+      60px 18px;
+  }
+
+
+  .home-title {
+    font-size: 42px;
+
+    line-height: 1.15;
+  }
+
+
+  .home-subtitle {
+    margin-top: 20px;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+  }
+
+
+  .home-buttons {
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 14px;
+
+    margin-top: 35px;
+  }
+
+
+  .home-btn {
+    width: 100%;
+
+    max-width: 280px;
+
+    min-height: 50px;
+
+    font-size: 16px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .home-hero {
+    min-height: 500px;
+
+    padding:
+      50px 15px;
+  }
+
+
+  .home-title {
+    font-size: 34px;
+  }
+
+
+  .home-subtitle {
+    font-size: 15px;
+  }
+
+
+  .home-buttons {
+    margin-top: 30px;
+  }
+
+
+  .home-btn {
+    max-width: 250px;
+
+    min-height: 48px;
+
+    padding:
+      11px 20px;
+
+    font-size: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL DEVICES
+===================================================== */
+
+@media (max-width: 360px) {
+
+  .home-title {
+    font-size: 30px;
+  }
+
+
+  .home-subtitle {
+    font-size: 14px;
+  }
+
+
+  .home-btn {
+    max-width: 230px;
+  }
+
+}
