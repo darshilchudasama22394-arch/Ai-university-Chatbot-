@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-
-const API = "http://localhost:5000/api/admin";
+import API from "../services/api";
 
 function ManageStudents() {
   const [students, setStudents] = useState([]);
@@ -18,7 +16,7 @@ function ManageStudents() {
   // Load Students
   const loadStudents = async () => {
     try {
-      const res = await axios.get(`${API}/students`);
+      const res = await API.get("/admin/students");
 
       if (res.data.success) {
         setStudents(res.data.students);
@@ -33,7 +31,7 @@ function ManageStudents() {
     if (!window.confirm("Delete this student?")) return;
 
     try {
-      const res = await axios.delete(`${API}/student/${id}`);
+      const res = await API.delete(`/admin/student/${id}`);
 
       if (res.data.success) {
         alert("Student Deleted Successfully");
@@ -82,8 +80,8 @@ function ManageStudents() {
     startY: 35,
     head: [["ID", "Name", "Email", "Role"]],
     body: students.map((student) => [
-      student.id,
-      student.full_name,
+      student._id,
+      student.fullName,
       student.email,
       student.role,
     ]),
@@ -93,8 +91,8 @@ function ManageStudents() {
 };
 
   const filteredStudents = students.filter((student) =>
-  student.full_name.toLowerCase().includes(search.toLowerCase()) ||
-  student.email.toLowerCase().includes(search.toLowerCase())
+  (student.fullName || "").toLowerCase().includes(search.toLowerCase()) ||
+  (student.email || "").toLowerCase().includes(search.toLowerCase())
 );
 
   return (
@@ -152,11 +150,11 @@ function ManageStudents() {
 
           {students.length > 0 ? (
             filteredStudents.map((student) => (
-              <tr key={student.id}>
+              <tr key={student._id}>
 
-                <td>{student.id}</td>
+                <td>{student._id}</td>
 
-                <td>{student.full_name}</td>
+                <td>{student.fullName}</td>
 
                 <td>{student.email}</td>
 
@@ -166,7 +164,7 @@ function ManageStudents() {
 
                   <button
                     className="btn btn-danger btn-sm"
-                    onClick={() => deleteStudent(student.id)}
+                    onClick={() => deleteStudent(student._id)}
                   >
                     Delete
                   </button>

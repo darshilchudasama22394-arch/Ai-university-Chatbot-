@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Notice = require("../models/Notice");
+const { verifyToken, adminOnly } = require("../middleware/authMiddleware");
 
 // ================= GET ALL NOTICES =================
 
@@ -26,7 +27,7 @@ router.get("/", async (req, res) => {
 
 // ================= ADD NOTICE =================
 
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, adminOnly, async (req, res) => {
   try {
     const {
       title,

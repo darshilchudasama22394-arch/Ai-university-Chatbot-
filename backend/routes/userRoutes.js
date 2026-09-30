@@ -2,25 +2,17 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const { verifyToken } = require("../middleware/authMiddleware");
+
+router.use(verifyToken);
 
 // ================= GET USER PROFILE =================
 
-router.get("/:id", async (req, res) => {
+router.get("/profile", async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).select(
-      "-password -otp -otp_expiry"
-    );
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found",
-      });
-    }
-
     res.json({
       success: true,
-      user: user,
+      user: req.user,
     });
   } catch (error) {
     console.error("Get Profile Error:", error);
@@ -34,26 +26,25 @@ router.get("/:id", async (req, res) => {
 
 // ================= UPDATE PROFILE =================
 
-router.put("/:id", async (req, res) => {
+router.put("/profile", async (req, res) => {
   try {
-    const { full_name, fullName, email } = req.body;
+    const { fullName, full_name } = req.body;
+    const suppliedName = fullName ?? full_name;
+    const name =
+      typeof suppliedName === "string"
+        ? suppliedName.trim()
+        : "";
 
-    // Support both fullName and full_name
-    const name = fullName || full_name;
-
-    if (!name || !email) {
+    if (!name) {
       return res.status(400).json({
         success: false,
-        message: "Full name and email are required",
+        message: "Full name is required",
       });
     }
 
     const user = await User.findByIdAndUpdate(
-      req.params.id,
-      {
-        fullName: name,
-        email: email,
-      },
+      req.user._id,
+      { fullName: name },
       {
         new: true,
         runValidators: true,
@@ -84,24 +75,30 @@ router.put("/:id", async (req, res) => {
 
 // ================= CHANGE PASSWORD =================
 
-router.post("/change-password", async (req, res) => {
+router.put("/change-password", async (req, res) => {
   try {
-    const {
-      userId,
-      currentPassword,
-      newPassword,
-    } = req.body;
+    const { currentPassword, newPassword } = req.body;
 
-    // Check required fields
-    if (!userId || !currentPassword || !newPassword) {
+    if (
+      typeof currentPassword !== "string" ||
+      typeof newPassword !== "string" ||
+      !currentPassword ||
+      !newPassword
+    ) {
       return res.status(400).json({
         success: false,
         message: "All password fields are required",
       });
     }
 
-    // Find user
-    const user = await User.findById(userId);
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: "New password must contain at least 6 characters",
+      });
+    }
+
+    const user = await User.findById(req.user._id);
 
     if (!user) {
       return res.status(404).json({

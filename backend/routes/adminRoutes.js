@@ -1,6 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
+const {
+  verifyToken,
+  adminOnly,
+} = require("../middleware/authMiddleware");
+
+router.use(verifyToken, adminOnly);
 
 // =====================================================
 // ACTIVITY CONTROLLER

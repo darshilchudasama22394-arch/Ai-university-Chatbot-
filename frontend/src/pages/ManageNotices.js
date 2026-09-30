@@ -70,13 +70,13 @@ function ManageNotices() {
       if (editingId) {
         // UPDATE
         res = await api.put(
-          `/admin/notices/${editingId}`,
+          `/admin/notice/${editingId}`,
           noticeData
         );
       } else {
         // ADD
         res = await api.post(
-          "/admin/notices",
+          "/admin/notice",
           noticeData
         );
       }
@@ -151,7 +151,7 @@ function ManageNotices() {
 
     try {
       const res = await api.delete(
-        `/admin/notices/${id}`
+        `/admin/notice/${id}`
       );
 
       if (res.data.success) {

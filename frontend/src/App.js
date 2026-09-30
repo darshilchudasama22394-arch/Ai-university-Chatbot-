@@ -174,22 +174,38 @@ function App() {
 
         <Route
           path="/manage-students"
-          element={<ManageStudents />}
+          element={
+            <AdminRoute>
+              <ManageStudents />
+            </AdminRoute>
+          }
         />
 
         <Route
           path="/manage-faqs"
-          element={<ManageFAQs />}
+          element={
+            <AdminRoute>
+              <ManageFAQs />
+            </AdminRoute>
+          }
         />
 
         <Route
           path="/manage-notices"
-          element={<ManageNotices />}
+          element={
+            <AdminRoute>
+              <ManageNotices />
+            </AdminRoute>
+          }
         />
 
         <Route
           path="/activity-logs"
-          element={<ActivityLogs />}
+          element={
+            <AdminRoute>
+              <ActivityLogs />
+            </AdminRoute>
+          }
         />
 
         {/* =================================================

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const FAQ = require("../models/FAQ");
+const { verifyToken, adminOnly } = require("../middleware/authMiddleware");
 
 // ================= GET ALL FAQs =================
 
@@ -26,7 +27,7 @@ router.get("/", async (req, res) => {
 
 // ================= ADD FAQ =================
 
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, adminOnly, async (req, res) => {
   try {
     const {
       question,

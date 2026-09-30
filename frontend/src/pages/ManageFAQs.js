@@ -58,7 +58,7 @@ function ManageFAQs() {
       if (editingId) {
         // UPDATE
         res = await api.put(
-          `/admin/faqs/${editingId}`,
+          `/admin/faq/${editingId}`,
           {
             question,
             answer,
@@ -68,7 +68,7 @@ function ManageFAQs() {
       } else {
         // ADD
         res = await api.post(
-          "/admin/faqs",
+          "/admin/faq",
           {
             question,
             answer,
@@ -128,7 +128,7 @@ function ManageFAQs() {
 
     try {
       const res = await api.delete(
-        `/admin/faqs/${id}`
+        `/admin/faq/${id}`
       );
 
       if (res.data.success) {
