@@ -1,10 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-
 // MongoDB Connection
 require("./config/database");
-
 // Routes
 const authRoutes = require("./routes/authRoutes");
 const chatRoutes = require("./routes/chatRoutes");
@@ -16,7 +14,18 @@ const activityRoutes = require("./routes/activityRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://ai-university-chatbot.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Routes
