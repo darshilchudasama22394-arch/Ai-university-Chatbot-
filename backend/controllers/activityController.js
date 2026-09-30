@@ -1,4 +1,5 @@
 const ActivityLog = require("../models/ActivityLog");
+const logger = require("../utils/logger");
 
 // =====================================================
 // GET ACTIVITY LOGS
@@ -15,7 +16,7 @@ const getActivityLogs = async (req, res) => {
       logs,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Get Activity Logs Error:",
       error
     );
@@ -49,7 +50,7 @@ const getActivityLogById = async (req, res) => {
       log,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Get Activity Log Error:",
       error
     );
@@ -101,7 +102,7 @@ const updateActivityLog = async (req, res) => {
       log,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Update Activity Log Error:",
       error
     );
@@ -139,7 +140,7 @@ const deleteActivityLog = async (req, res) => {
       message: "Activity log deleted successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Delete Activity Log Error:",
       error
     );
@@ -166,7 +167,7 @@ const deleteAllActivityLogs = async (req, res) => {
       deletedCount: result.deletedCount,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Delete All Activity Logs Error:",
       error
     );

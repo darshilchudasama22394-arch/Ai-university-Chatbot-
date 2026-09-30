@@ -1,6 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const logger = require("./utils/logger");
 // MongoDB Connection
 require("./config/database");
 // Routes
@@ -28,6 +29,21 @@ app.use(
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const startedAt = Date.now();
+
+  res.on("finish", () => {
+    logger.http("HTTP request", {
+      method: req.method,
+      path: req.path,
+      statusCode: res.statusCode,
+      durationMs: Date.now() - startedAt,
+    });
+  });
+
+  next();
+});
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
@@ -47,7 +63,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(
-    `✅ Server running on http://localhost:${PORT}`
-  );
+  logger.info("Server listening", { port: PORT });
 });

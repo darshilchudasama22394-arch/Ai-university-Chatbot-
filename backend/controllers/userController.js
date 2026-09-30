@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const logger = require("../utils/logger");
 
 // Get User Profile
 exports.getProfile = async (req, res) => {
@@ -16,7 +17,7 @@ exports.getProfile = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Get Profile Error:", error);
+    logger.logError("Get Profile Error:", error);
 
     res.status(500).json({
       success: false,
@@ -65,7 +66,7 @@ exports.updateProfile = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Update Profile Error:", error);
+    logger.logError("Update Profile Error:", error);
 
     res.status(500).json({
       success: false,

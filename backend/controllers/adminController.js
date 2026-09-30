@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const logger = require("../utils/logger");
 const Chat = require("../models/Chat");
 const FAQ = require("../models/FAQ");
 const Notice = require("../models/Notice");
@@ -30,7 +31,7 @@ const getDashboardStats = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Dashboard Stats Error:",
       error
     );
@@ -60,7 +61,7 @@ const students = async (req, res) => {
       students,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Get Students Error:",
       error
     );
@@ -121,7 +122,7 @@ const createStudent = async (req, res) => {
       message: "Student Added Successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Create Student Error:",
       error
     );
@@ -218,7 +219,7 @@ const editStudent = async (req, res) => {
       student: updatedStudent,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Update Student Error:",
       error
     );
@@ -262,7 +263,7 @@ const removeStudent = async (req, res) => {
         "Student Deleted Successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Delete Student Error:",
       error
     );
@@ -293,7 +294,7 @@ const adminFAQs = async (req, res) => {
       faqs,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Get Admin FAQs Error:",
       error
     );
@@ -339,7 +340,7 @@ const createFAQ = async (req, res) => {
       faq,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Create FAQ Error:",
       error
     );
@@ -390,7 +391,7 @@ const editFAQ = async (req, res) => {
       faq,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Update FAQ Error:",
       error
     );
@@ -425,7 +426,7 @@ const removeFAQ = async (req, res) => {
         "FAQ Deleted Successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Delete FAQ Error:",
       error
     );
@@ -456,7 +457,7 @@ const adminNotices = async (req, res) => {
       notices,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Get Admin Notices Error:",
       error
     );
@@ -505,7 +506,7 @@ const createNotice = async (req, res) => {
       notice,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Create Notice Error:",
       error
     );
@@ -559,7 +560,7 @@ const editNotice = async (req, res) => {
       notice,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Update Notice Error:",
       error
     );
@@ -595,7 +596,7 @@ const removeNotice = async (req, res) => {
         "Notice Deleted Successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Delete Notice Error:",
       error
     );

@@ -1,4 +1,5 @@
 const ActivityLog = require("../models/ActivityLog");
+const logger = require("./logger");
 
 const createActivityLog = async ({
   userId = null,
@@ -18,9 +19,9 @@ const createActivityLog = async ({
       details,
     });
 
-    console.log("✅ Activity log created");
+    logger.info("✅ Activity log created");
   } catch (error) {
-    console.error(
+    logger.logError(
       "Activity Log Error:",
       error
     );

@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const logger = require("../utils/logger");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const transporter = require("../config/email");
@@ -48,7 +49,7 @@ const register = async (req, res) => {
       message: "Registration Successful",
     });
   } catch (error) {
-    console.error("Register Error:", error);
+    logger.logError("Register Error:", error);
 
     res.status(500).json({
       success: false,
@@ -191,7 +192,7 @@ const login = async (req, res) => {
       message: "OTP sent to your registered email",
     });
   } catch (error) {
-    console.error("Login Error:", error);
+    logger.logError("Login Error:", error);
 
     res.status(500).json({
       success: false,
@@ -319,7 +320,7 @@ const verifyLoginOTP = async (req, res) => {
       user: userResponse,
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Verify Login OTP Error:",
       error
     );
@@ -404,7 +405,7 @@ const forgotPassword = async (req, res) => {
       message: "OTP sent successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Forgot Password Error:",
       error
     );
@@ -478,7 +479,7 @@ const verifyOTP = async (req, res) => {
       message: "OTP Verified Successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Verify OTP Error:",
       error
     );
@@ -531,7 +532,7 @@ const resetPassword = async (req, res) => {
       message: "Password Reset Successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Reset Password Error:",
       error
     );

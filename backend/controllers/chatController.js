@@ -1,6 +1,9 @@
 const Groq = require("groq-sdk");
 const Chat = require("../models/Chat");
 const ActivityLog = require("../models/ActivityLog");
+const logger = require("../utils/logger");
+
+const GROQ_MODEL = "qwen/qwen3.8-27b";
 
 // =====================================================
 // GROQ
@@ -18,17 +21,19 @@ const checkGroqModels = async () => {
   try {
     const models = await groq.models.list();
 
-    console.log("\n====================================");
-    console.log("AVAILABLE GROQ MODELS");
-    console.log("====================================");
+    const modelAvailable = models.data.some(
+      (model) => model.id === GROQ_MODEL
+    );
 
-    models.data.forEach((model) => {
-      console.log(model.id);
-    });
-
-    console.log("====================================\n");
+    if (modelAvailable) {
+      logger.info("Groq model is available", { model: GROQ_MODEL });
+    } else {
+      logger.warn("Configured Groq model is unavailable", {
+        model: GROQ_MODEL,
+      });
+    }
   } catch (error) {
-    console.error(
+    logger.logError(
       "Groq Models Error:",
       error.message
     );
@@ -69,7 +74,7 @@ const askAI = async (req, res) => {
 
     const completion =
       await groq.chat.completions.create({
-        model: "qwen/qwen3.8-27b",
+        model: GROQ_MODEL,
 
         messages: [
           {
@@ -166,9 +171,6 @@ Always follow this format.
       "\n\n"
     );
 
-    console.log("AI Answer:");
-    console.log(answer);
-
     // =================================================
     // SAVE CHAT
     // =================================================
@@ -191,7 +193,7 @@ Always follow this format.
 
   } catch (error) {
 
-    console.error(
+    logger.logError(
       "Groq Error:",
       error
     );
@@ -235,7 +237,7 @@ const history = async (req, res) => {
 
   } catch (error) {
 
-    console.error(
+    logger.logError(
       "History Error:",
       error
     );
@@ -267,7 +269,7 @@ const newSession = async (req, res) => {
 
   } catch (error) {
 
-    console.error(
+    logger.logError(
       "New Session Error:",
       error
     );
@@ -375,7 +377,7 @@ const deleteChat = async (req, res) => {
 
   } catch (error) {
 
-    console.error(
+    logger.logError(
       "Delete Chat Error:",
       error
     );
@@ -471,7 +473,7 @@ const deleteAllChats = async (req, res) => {
 
   } catch (error) {
 
-    console.error(
+    logger.logError(
       "Delete All Chats Error:",
       error
     );

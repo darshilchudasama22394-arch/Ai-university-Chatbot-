@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const { verifyToken } = require("../middleware/authMiddleware");
+const logger = require("../utils/logger");
 
 router.use(verifyToken);
 
@@ -15,7 +16,7 @@ router.get("/profile", async (req, res) => {
       user: req.user,
     });
   } catch (error) {
-    console.error("Get Profile Error:", error);
+    logger.logError("Get Profile Error:", error);
 
     res.status(500).json({
       success: false,
@@ -64,7 +65,7 @@ router.put("/profile", async (req, res) => {
       user: user,
     });
   } catch (error) {
-    console.error("Update Profile Error:", error);
+    logger.logError("Update Profile Error:", error);
 
     res.status(500).json({
       success: false,
@@ -134,7 +135,7 @@ router.put("/change-password", async (req, res) => {
       message: "Password Changed Successfully",
     });
   } catch (error) {
-    console.error(
+    logger.logError(
       "Change Password Error:",
       error
     );

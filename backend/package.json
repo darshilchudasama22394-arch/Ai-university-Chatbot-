@@ -18,7 +18,8 @@
     "mongoose": "^9.9.1",
     "multer": "^2.2.0",
     "nodemailer": "^9.0.5",
-    "react-toastify": "^11.1.0"
+    "react-toastify": "^11.1.0",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

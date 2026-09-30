@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const logger = require("../utils/logger");
 
 // =====================================================
 // VERIFY JWT TOKEN
@@ -53,7 +54,7 @@ const verifyToken = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.error(
+    logger.logError(
       "Authentication Error:",
       error.message
     );

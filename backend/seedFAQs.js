@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
+const logger = require("./utils/logger");
 
 const FAQ = require("./models/FAQ");
 
@@ -82,23 +83,22 @@ const seedFAQs = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
 
-    console.log("MongoDB Connected");
+    logger.info("MongoDB connected for FAQ seeding");
 
     await FAQ.deleteMany({});
 
     await FAQ.insertMany(faqs);
 
-    console.log(`${faqs.length} FAQs inserted successfully`);
+    logger.info("FAQs seeded", { count: faqs.length });
 
     await mongoose.connection.close();
 
-    console.log("MongoDB connection closed");
-
-    process.exit(0);
+    logger.info("MongoDB connection closed after FAQ seeding");
   } catch (error) {
-    console.error("FAQ Seed Error:", error);
+    logger.logError("FAQ seeding failed", error);
 
-    process.exit(1);
+    await mongoose.disconnect().catch(() => {});
+    process.exitCode = 1;
   }
 };
 

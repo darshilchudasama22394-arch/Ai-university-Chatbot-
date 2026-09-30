@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const FAQ = require("../models/FAQ");
+const logger = require("../utils/logger");
 const { verifyToken, adminOnly } = require("../middleware/authMiddleware");
 
 // ================= GET ALL FAQs =================
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
       faqs: faqs,
     });
   } catch (error) {
-    console.error("Get FAQs Error:", error);
+    logger.logError("Get FAQs Error:", error);
 
     res.status(500).json({
       success: false,
@@ -56,7 +57,7 @@ router.post("/", verifyToken, adminOnly, async (req, res) => {
       faq: faq,
     });
   } catch (error) {
-    console.error("Add FAQ Error:", error);
+    logger.logError("Add FAQ Error:", error);
 
     res.status(500).json({
       success: false,

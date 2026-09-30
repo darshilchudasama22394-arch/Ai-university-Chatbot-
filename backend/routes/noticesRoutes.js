@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Notice = require("../models/Notice");
+const logger = require("../utils/logger");
 const { verifyToken, adminOnly } = require("../middleware/authMiddleware");
 
 // ================= GET ALL NOTICES =================
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
       notices: notices,
     });
   } catch (error) {
-    console.error("Get Notices Error:", error);
+    logger.logError("Get Notices Error:", error);
 
     res.status(500).json({
       success: false,
@@ -56,7 +57,7 @@ router.post("/", verifyToken, adminOnly, async (req, res) => {
       notice: notice,
     });
   } catch (error) {
-    console.error("Add Notice Error:", error);
+    logger.logError("Add Notice Error:", error);
 
     res.status(500).json({
       success: false,
