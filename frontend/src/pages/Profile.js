@@ -5,7 +5,7 @@ import API from "../services/api";
 import "./Profile.css";
 
 function Profile() {
-  const [user, setUser] = useState(null);
+  const [, setUser] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("student");
@@ -14,7 +14,6 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  // Password states
   const [showPasswordSection, setShowPasswordSection] =
     useState(false);
 
@@ -26,10 +25,6 @@ function Profile() {
 
   const [confirmPassword, setConfirmPassword] =
     useState("");
-
-  // ===============================
-  // LOAD PROFILE
-  // ===============================
 
   useEffect(() => {
     loadProfile();
@@ -45,100 +40,55 @@ function Profile() {
         const userData = res.data.user;
 
         setUser(userData);
+        setFullName(userData.fullName || "");
+        setEmail(userData.email || "");
+        setRole(userData.role || "student");
+        setCreatedAt(userData.createdAt || "");
 
-        setFullName(
-          userData.fullName || ""
-        );
-
-        setEmail(
-          userData.email || ""
-        );
-
-        setRole(
-          userData.role || "student"
-        );
-
-        setCreatedAt(
-          userData.createdAt || ""
-        );
-
-        // Update localStorage
         localStorage.setItem(
           "user",
           JSON.stringify(userData)
         );
       }
     } catch (error) {
-      console.error(
-        "Profile Error:",
-        error
-      );
+      console.error("Profile Error:", error);
 
-      // Fallback to localStorage
-      const savedUser =
-        JSON.parse(
-          localStorage.getItem("user")
-        );
+      const savedUser = JSON.parse(
+        localStorage.getItem("user")
+      );
 
       if (savedUser) {
         setUser(savedUser);
-
-        setFullName(
-          savedUser.fullName || ""
-        );
-
-        setEmail(
-          savedUser.email || ""
-        );
-
-        setRole(
-          savedUser.role || "student"
-        );
-
-        setCreatedAt(
-          savedUser.createdAt || ""
-        );
+        setFullName(savedUser.fullName || "");
+        setEmail(savedUser.email || "");
+        setRole(savedUser.role || "student");
+        setCreatedAt(savedUser.createdAt || "");
       } else {
-        toast.error(
-          "Unable to load profile"
-        );
+        toast.error("Unable to load profile");
       }
     } finally {
       setLoading(false);
     }
   };
 
-  // ===============================
-  // SAVE PROFILE
-  // ===============================
-
   const saveProfile = async () => {
     if (!fullName.trim()) {
-      toast.warning(
-        "Full name is required"
-      );
+      toast.warning("Full name is required");
       return;
     }
 
     try {
       setSaving(true);
 
-      const res = await API.put(
-        "/user/profile",
-        {
-          fullName: fullName.trim(),
-        }
-      );
+      const res = await API.put("/user/profile", {
+        fullName: fullName.trim(),
+      });
 
       if (res.data.success) {
-        const updatedUser =
-          res.data.user;
+        const updatedUser = res.data.user;
 
         setUser(updatedUser);
-
-        setFullName(
-          updatedUser.fullName || ""
-        );
+        setFullName(updatedUser.fullName || "");
 
         localStorage.setItem(
           "user",
@@ -164,10 +114,6 @@ function Profile() {
     }
   };
 
-  // ===============================
-  // CHANGE PASSWORD
-  // ===============================
-
   const changePassword = async () => {
     if (
       !currentPassword ||
@@ -187,9 +133,7 @@ function Profile() {
       return;
     }
 
-    if (
-      newPassword !== confirmPassword
-    ) {
+    if (newPassword !== confirmPassword) {
       toast.error(
         "New passwords do not match"
       );
@@ -213,7 +157,6 @@ function Profile() {
         setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");
-
         setShowPasswordSection(false);
       }
     } catch (error) {
@@ -229,21 +172,12 @@ function Profile() {
     }
   };
 
-  // ===============================
-  // LOGOUT
-  // ===============================
-
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    window.location.href =
-      "/login";
+    window.location.href = "/login";
   };
-
-  // ===============================
-  // LOADING
-  // ===============================
 
   if (loading) {
     return (
@@ -265,14 +199,8 @@ function Profile() {
     );
   }
 
-  // ===============================
-  // PROFILE UI
-  // ===============================
-
   return (
     <div className="dashboard-page">
-
-      {/* SIDEBAR */}
 
       <Sidebar
         logout={logout}
@@ -282,36 +210,22 @@ function Profile() {
         }}
       />
 
-      {/* CONTENT */}
-
       <div className="dashboard-content">
-
         <div className="profile-wrapper">
 
-          {/* PAGE HEADER */}
-
           <div className="profile-page-header">
-
             <div>
-              <h2>
-                👤 My Profile
-              </h2>
+              <h2>👤 My Profile</h2>
 
               <p>
                 Manage your account information
               </p>
             </div>
-
           </div>
-
-          {/* PROFILE CARD */}
 
           <div className="profile-card">
 
-            {/* AVATAR */}
-
             <div className="profile-top">
-
               <div className="profile-avatar">
                 {fullName
                   ? fullName
@@ -321,15 +235,11 @@ function Profile() {
               </div>
 
               <div className="profile-basic">
-
                 <h3>
-                  {fullName ||
-                    "User"}
+                  {fullName || "User"}
                 </h3>
 
-                <p>
-                  {email}
-                </p>
+                <p>{email}</p>
 
                 <span
                   className={`profile-role ${
@@ -342,17 +252,12 @@ function Profile() {
                     ? "👑 Administrator"
                     : "🎓 Student"}
                 </span>
-
               </div>
-
             </div>
 
             <hr />
 
-            {/* PERSONAL INFORMATION */}
-
             <div className="profile-section">
-
               <h4>
                 👤 Personal Information
               </h4>
@@ -360,7 +265,6 @@ function Profile() {
               <div className="profile-grid">
 
                 <div className="profile-field">
-
                   <label>
                     Full Name
                   </label>
@@ -375,11 +279,9 @@ function Profile() {
                     }
                     placeholder="Enter your full name"
                   />
-
                 </div>
 
                 <div className="profile-field">
-
                   <label>
                     Email Address
                   </label>
@@ -393,11 +295,9 @@ function Profile() {
                   <small>
                     Email cannot be changed.
                   </small>
-
                 </div>
 
                 <div className="profile-field">
-
                   <label>
                     Account Role
                   </label>
@@ -411,11 +311,9 @@ function Profile() {
                     }
                     disabled
                   />
-
                 </div>
 
                 <div className="profile-field">
-
                   <label>
                     Account Created
                   </label>
@@ -431,7 +329,6 @@ function Profile() {
                     }
                     disabled
                   />
-
                 </div>
 
               </div>
@@ -445,21 +342,15 @@ function Profile() {
                   ? "Saving..."
                   : "💾 Save Changes"}
               </button>
-
             </div>
 
             <hr />
 
-            {/* SECURITY */}
-
             <div className="profile-section">
 
               <div className="security-header">
-
                 <div>
-                  <h4>
-                    🔐 Security
-                  </h4>
+                  <h4>🔐 Security</h4>
 
                   <p>
                     Keep your account secure by
@@ -479,25 +370,19 @@ function Profile() {
                     ? "Cancel"
                     : "Change Password"}
                 </button>
-
               </div>
-
-              {/* PASSWORD FORM */}
 
               {showPasswordSection && (
                 <div className="password-form">
 
                   <div className="profile-field">
-
                     <label>
                       Current Password
                     </label>
 
                     <input
                       type="password"
-                      value={
-                        currentPassword
-                      }
+                      value={currentPassword}
                       onChange={(e) =>
                         setCurrentPassword(
                           e.target.value
@@ -505,11 +390,9 @@ function Profile() {
                       }
                       placeholder="Enter current password"
                     />
-
                   </div>
 
                   <div className="profile-field">
-
                     <label>
                       New Password
                     </label>
@@ -524,20 +407,16 @@ function Profile() {
                       }
                       placeholder="Enter new password"
                     />
-
                   </div>
 
                   <div className="profile-field">
-
                     <label>
                       Confirm New Password
                     </label>
 
                     <input
                       type="password"
-                      value={
-                        confirmPassword
-                      }
+                      value={confirmPassword}
                       onChange={(e) =>
                         setConfirmPassword(
                           e.target.value
@@ -545,14 +424,11 @@ function Profile() {
                       }
                       placeholder="Confirm new password"
                     />
-
                   </div>
 
                   <button
                     className="profile-password-btn"
-                    onClick={
-                      changePassword
-                    }
+                    onClick={changePassword}
                   >
                     🔑 Update Password
                   </button>
@@ -565,7 +441,6 @@ function Profile() {
           </div>
 
         </div>
-
       </div>
 
     </div>

@@ -8,8 +8,6 @@ function Notices() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
   useEffect(() => {
     fetchNotices();
   }, []);
@@ -61,9 +59,6 @@ function Notices() {
 
   return (
     <div className="notices-page">
-
-      {/* SIDEBAR */}
-
       <Sidebar
         logout={logout}
         newChat={() => {
@@ -71,22 +66,16 @@ function Notices() {
         }}
       />
 
-      {/* MAIN CONTENT */}
-
       <div className="notices-content">
-
         <div className="notices-header">
           <div>
             <h1>📢 University Notices</h1>
-
             <p>
               Stay updated with the latest university
               announcements.
             </p>
           </div>
         </div>
-
-        {/* LOADING */}
 
         {loading && (
           <div className="notice-message">
@@ -95,23 +84,17 @@ function Notices() {
           </div>
         )}
 
-        {/* ERROR */}
-
         {!loading && error && (
           <div className="notice-error">
             ⚠️ {error}
           </div>
         )}
 
-        {/* NO NOTICES */}
-
         {!loading &&
           !error &&
           notices.length === 0 && (
             <div className="empty-notices">
-              <div className="empty-icon">
-                📢
-              </div>
+              <div className="empty-icon">📢</div>
 
               <h2>No Notices Available</h2>
 
@@ -122,67 +105,42 @@ function Notices() {
             </div>
           )}
 
-        {/* NOTICES */}
-
         {!loading &&
           !error &&
           notices.length > 0 && (
             <div className="notices-list">
-
               {notices.map((notice) => (
                 <div
                   className="notice-card"
                   key={notice._id}
                 >
-
-                  {/* TOP */}
-
                   <div className="notice-top">
-
                     <div className="notice-icon">
                       📢
                     </div>
 
                     <div className="notice-title-area">
-
-                      <h2>
-                        {notice.title}
-                      </h2>
+                      <h2>{notice.title}</h2>
 
                       <span className="notice-category">
-                        {notice.category ||
-                          "General"}
+                        {notice.category || "General"}
                       </span>
-
                     </div>
-
                   </div>
-
-                  {/* DESCRIPTION */}
 
                   <div className="notice-description">
                     {notice.description}
                   </div>
 
-                  {/* FOOTER */}
-
                   <div className="notice-footer">
-
                     <span>
-                      📅{" "}
-                      {formatDate(
-                        notice.date
-                      )}
+                      📅 {formatDate(notice.date)}
                     </span>
-
                   </div>
-
                 </div>
               ))}
-
             </div>
           )}
-
       </div>
     </div>
   );
