@@ -6,7 +6,6 @@ import "./Profile.css";
 
 function Profile() {
   const [user, setUser] = useState(null);
-
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("student");
