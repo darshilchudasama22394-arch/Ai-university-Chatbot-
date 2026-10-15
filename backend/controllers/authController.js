@@ -2,7 +2,7 @@ const User = require("../models/User");
 const logger = require("../utils/logger");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const transporter = require("../config/email");
+const { sendOTPEmail } = require("../config/email");
 
 // =====================================================
 // REGISTER
@@ -124,62 +124,11 @@ const login = async (req, res) => {
     // SEND OTP EMAIL
     // =================================================
 
-    await transporter.sendMail({
-      from: `"PU PIET Dep." <${process.env.EMAIL_USER}>`,
+    await sendOTPEmail({
       to: user.email,
-      subject: "PU PIET Dep. - Login OTP",
-      html: `
-        <div style="
-          font-family: Arial, sans-serif;
-          max-width: 600px;
-          margin: auto;
-          padding: 30px;
-          background: #f8fafc;
-          border-radius: 12px;
-        ">
-
-          <h2 style="color:#4f46e5;">
-            PU PIET Dep.
-          </h2>
-
-          <p>
-            Hello <strong>${user.fullName}</strong>,
-          </p>
-
-          <p>
-            Your login verification OTP is:
-          </p>
-
-          <div style="
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 8px;
-            color: #4f46e5;
-            background: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-          ">
-            ${otp}
-          </div>
-
-          <p style="margin-top:20px;">
-            This OTP is valid for <strong>5 minutes</strong>.
-          </p>
-
-          <p>
-            If you did not attempt to login,
-            please ignore this email.
-          </p>
-
-          <hr />
-
-          <p style="color:#64748b;">
-            PU PIET Dep.
-          </p>
-
-        </div>
-      `,
+      name: user.fullName,
+      otp,
+      purpose: "login",
     });
 
     // IMPORTANT:
@@ -371,33 +320,11 @@ const forgotPassword = async (req, res) => {
 
     await user.save();
 
-    await transporter.sendMail({
-      from: `"PU PIET Dep." <${process.env.EMAIL_USER}>`,
+    await sendOTPEmail({
       to: user.email,
-      subject:
-        "PU PIET Dep. - Password Reset OTP",
-      html: `
-        <h2>PU PIET Dep.</h2>
-
-        <p>
-          Hello <strong>${user.fullName}</strong>,
-        </p>
-
-        <p>
-          Your password reset OTP is:
-        </p>
-
-        <h1 style="
-          color:#4f46e5;
-          letter-spacing:8px;
-        ">
-          ${otp}
-        </h1>
-
-        <p>
-          This OTP is valid for 5 minutes.
-        </p>
-      `,
+      name: user.fullName,
+      otp,
+      purpose: "reset",
     });
 
     res.json({
