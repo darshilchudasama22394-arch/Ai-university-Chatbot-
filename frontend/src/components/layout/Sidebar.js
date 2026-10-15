@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { applyTheme, getStoredTheme } from "../../utils/theme";
 import "./Sidebar.css";
 
 function Sidebar({ logout, newChat }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => {
@@ -16,16 +18,11 @@ function Sidebar({ logout, newChat }) {
   };
 
   const toggleDarkMode = () => {
-    document.body.classList.toggle("dark-mode");
-
-    if (document.body.classList.contains("dark-mode")) {
-      localStorage.setItem("theme", "dark");
-    } else {
-      localStorage.setItem("theme", "light");
-    }
-
+    applyTheme(getStoredTheme() === "dark" ? "light" : "dark");
     closeMenu();
   };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
@@ -33,7 +30,7 @@ function Sidebar({ logout, newChat }) {
       <button
         className="mobile-menu-btn"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Open menu"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
       >
         {isOpen ? "✕" : "☰"}
       </button>
@@ -43,78 +40,92 @@ function Sidebar({ logout, newChat }) {
         <div
           className="sidebar-overlay"
           onClick={closeMenu}
+          aria-hidden="true"
         ></div>
       )}
 
       {/* Sidebar */}
-      <div className={`sidebar ${isOpen ? "sidebar-open" : ""}`}>
+      <aside className={`sidebar ${isOpen ? "sidebar-open" : ""}`}>
 
         {/* Logo */}
-        <div className="logo-section">
+        <div className="logo-section" onClick={() => goTo("/dashboard")} style={{ cursor: "pointer" }}>
           <h2>🎓</h2>
-          <h4>AI University Helpdesk</h4>
+          <div className="logo-text">
+            <h4>PU PIET Dep.</h4>
+            <span className="logo-subtitle">Student Portal</span>
+          </div>
         </div>
 
-        <hr />
+        <div className="sidebar-divider"></div>
 
-        {/* New Chat */}
-        <button
-          className="menu-btn"
-          onClick={() => {
-            newChat();
-            closeMenu();
-          }}
-        >
-          ➕ New Chat
-        </button>
+        {/* Navigation Menu */}
+        <nav className="sidebar-nav">
+          {/* New Chat */}
+          <button
+            className={`menu-btn menu-btn-primary ${isActive("/dashboard") && !chatsExist() ? "" : ""}`}
+            onClick={() => {
+              newChat();
+              closeMenu();
+            }}
+          >
+            <span className="menu-icon">➕</span>
+            <span className="menu-label">New Chat</span>
+          </button>
 
-        {/* History */}
-        <button
-          className="menu-btn"
-          onClick={() => goTo("/history")}
-        >
-          🕘 History
-        </button>
+          {/* History */}
+          <button
+            className={`menu-btn ${isActive("/history") ? "menu-btn-active" : ""}`}
+            onClick={() => goTo("/history")}
+          >
+            <span className="menu-icon">🕘</span>
+            <span className="menu-label">History</span>
+          </button>
 
-        {/* Profile */}
-        <button
-          className="menu-btn"
-          onClick={() => goTo("/profile")}
-        >
-          👤 Profile
-        </button>
+          {/* Profile */}
+          <button
+            className={`menu-btn ${isActive("/profile") ? "menu-btn-active" : ""}`}
+            onClick={() => goTo("/profile")}
+          >
+            <span className="menu-icon">👤</span>
+            <span className="menu-label">Profile</span>
+          </button>
 
-        {/* Settings */}
-        <button
-          className="menu-btn"
-          onClick={() => goTo("/settings")}
-        >
-          ⚙️ Settings
-        </button>
+          {/* Settings */}
+          <button
+            className={`menu-btn ${isActive("/settings") ? "menu-btn-active" : ""}`}
+            onClick={() => goTo("/settings")}
+          >
+            <span className="menu-icon">⚙️</span>
+            <span className="menu-label">Settings</span>
+          </button>
 
-        {/* FAQs */}
-        <button
-          className="menu-btn"
-          onClick={() => goTo("/faqs")}
-        >
-          ❓ FAQs
-        </button>
+          {/* FAQs */}
+          <button
+            className={`menu-btn ${isActive("/faqs") ? "menu-btn-active" : ""}`}
+            onClick={() => goTo("/faqs")}
+          >
+            <span className="menu-icon">❓</span>
+            <span className="menu-label">FAQs</span>
+          </button>
 
-        {/* Notices */}
-        <button
-          className="menu-btn"
-          onClick={() => goTo("/notices")}
-        >
-          📢 Notices
-        </button>
+          {/* Notices */}
+          <button
+            className={`menu-btn ${isActive("/notices") ? "menu-btn-active" : ""}`}
+            onClick={() => goTo("/notices")}
+          >
+            <span className="menu-icon">📢</span>
+            <span className="menu-label">Notices</span>
+          </button>
 
-        {/* Dark Mode */}
-        <button
-          className="menu-btn"
-          onClick={toggleDarkMode}
-        >
-          🌙 Dark Mode
-        </button>
+          {/* Dark Mode */}
+          <button
+            className="menu-btn"
+            onClick={toggleDarkMode}
+          >
+            <span className="menu-icon">🌙</span>
+            <span className="menu-label">Theme Mode</span>
+          </button>
+        </nav>
 
         {/* Logout */}
         <div className="logout-section">
@@ -125,13 +136,19 @@ function Sidebar({ logout, newChat }) {
               logout();
             }}
           >
-            🚪 Logout
+            <span className="menu-icon">🚪</span>
+            <span className="menu-label">Logout</span>
           </button>
         </div>
 
-      </div>
+      </aside>
     </>
   );
+}
+
+// Helper to avoid reference error
+function chatsExist() {
+  return false;
 }
 
 export default Sidebar;

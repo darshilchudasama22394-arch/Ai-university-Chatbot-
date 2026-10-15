@@ -1,98 +1,92 @@
-/* ================================
-   NOTICES PAGE
-================================ */
+/* =====================================================
+   NOTICES PAGE - MODERN UNIVERSITY ANNOUNCEMENTS
+   ===================================================== */
 
 .notices-page {
   min-height: 100vh;
   display: flex;
-  background: #f5f7fb;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
 }
-
-/* ================================
-   MAIN CONTENT
-================================ */
 
 .notices-content {
   flex: 1;
-  padding: 40px;
-  margin-left: 250px;
+  min-width: 0;
   min-height: 100vh;
+  margin-left: 260px;
+  padding: 32px 40px;
   box-sizing: border-box;
 }
 
-/* ================================
+/* =====================================================
    HEADER
-================================ */
-
+   ===================================================== */
 .notices-header {
-  background: white;
-  border-radius: 16px;
-  padding: 25px 30px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
 }
 
 .notices-header h1 {
-  margin: 0;
-  font-size: 30px;
-  color: #1f2937;
+  margin: 0 0 6px;
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
 }
 
 .notices-header p {
-  margin: 8px 0 0;
-  color: #6b7280;
+  margin: 0;
+  color: var(--color-text-secondary);
   font-size: 15px;
 }
 
-/* ================================
-   NOTICE LIST
-================================ */
-
+/* =====================================================
+   NOTICES LIST & CARDS
+   ===================================================== */
 .notices-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
-/* ================================
-   NOTICE CARD
-================================ */
-
 .notice-card {
-  background: white;
-  border-radius: 16px;
   padding: 24px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  transition: 0.2s ease;
-  box-sizing: border-box;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-fast);
 }
 
 .notice-card:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
 }
-
-/* ================================
-   NOTICE TOP
-================================ */
 
 .notice-top {
   display: flex;
   align-items: flex-start;
-  gap: 15px;
+  gap: 16px;
 }
 
 .notice-icon {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  border-radius: 12px;
-  background: #eef2ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 23px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(124, 58, 237, 0.15));
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  font-size: 20px;
+  color: var(--color-primary);
+}
+
+body.dark-mode .notice-icon {
+  background: #172236;
+  border-color: rgba(129, 140, 248, 0.25);
+  color: #a5b4fc;
 }
 
 .notice-title-area {
@@ -102,312 +96,131 @@
 
 .notice-title-area h2 {
   margin: 0 0 8px;
-  font-size: 20px;
-  color: #111827;
-  overflow-wrap: break-word;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
-
-/* ================================
-   CATEGORY
-================================ */
 
 .notice-category {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: #e0e7ff;
-  color: #3730a3;
-  font-size: 12px;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  color: var(--color-primary);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-/* ================================
-   DESCRIPTION
-================================ */
+body.dark-mode .notice-category {
+  background: rgba(79, 70, 229, 0.2);
+  color: #c7d2fe;
+}
 
 .notice-description {
-  margin-top: 18px;
-  padding-left: 63px;
-  color: #4b5563;
-  font-size: 15px;
-  line-height: 1.7;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  margin-top: 14px;
+  padding-left: 60px;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
-
-/* ================================
-   FOOTER
-================================ */
 
 .notice-footer {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid #eeeeee;
-  padding-left: 63px;
-  color: #6b7280;
-  font-size: 13px;
+  margin-top: 16px;
+  padding: 12px 0 0 60px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
 }
 
-/* ================================
-   EMPTY
-================================ */
-
-.empty-notices {
-  background: white;
-  border-radius: 16px;
-  padding: 70px 30px;
+/* =====================================================
+   EMPTY & STATE SCREENS
+   ===================================================== */
+.empty-notices,
+.notice-message {
+  padding: 48px 24px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .empty-icon {
-  font-size: 55px;
-  margin-bottom: 15px;
+  font-size: 44px;
+  margin-bottom: 14px;
 }
 
 .empty-notices h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  font-weight: 750;
+  color: var(--color-text);
+}
+
+.empty-notices p,
+.notice-message p {
   margin: 0;
-  color: #374151;
-}
-
-.empty-notices p {
-  color: #6b7280;
-}
-
-/* ================================
-   ERROR
-================================ */
-
-.notice-error {
-  background: #fff1f2;
-  color: #be123c;
-  border: 1px solid #fecdd3;
-  border-radius: 12px;
-  padding: 18px;
-}
-
-/* ================================
-   LOADING
-================================ */
-
-.notice-message {
-  background: white;
-  border-radius: 16px;
-  padding: 50px;
-  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 14px;
 }
 
 .notice-loader {
-  width: 35px;
-  height: 35px;
-  margin: 0 auto 15px;
-  border: 4px solid #e5e7eb;
-  border-top: 4px solid #4f46e5;
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(79, 70, 229, 0.2);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
-  animation: noticeSpin 1s linear infinite;
+  animation: noticesSpin 0.7s linear infinite;
+  margin: 0 auto 12px;
 }
 
-@keyframes noticeSpin {
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes noticesSpin {
+  to { transform: rotate(360deg); }
+}
+
+.notice-error {
+  padding: 18px 22px;
+  border-radius: var(--radius-control);
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error-text);
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 992px) {
-
+   RESPONSIVE DESIGN
+   ===================================================== */
+@media (max-width: 991px) {
   .notices-content {
-    margin-left: 220px;
-    padding: 30px 20px;
+    margin-left: 240px;
+    padding: 24px 28px;
   }
-
-  .notices-header {
-    padding: 22px;
-  }
-
 }
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media (max-width: 768px) {
-
-  .notices-page {
-    display: block;
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  /*
-     Sidebar becomes normal/mobile width.
-     If your Sidebar has its own mobile CSS,
-     this prevents the notices content from
-     being pushed outside the screen.
-  */
-
   .notices-content {
-    width: 100%;
     margin-left: 0;
-    padding: 20px 15px 30px;
-    box-sizing: border-box;
+    padding: 72px 18px 32px;
   }
-
-  /* HEADER */
-
-  .notices-header {
-    width: 100%;
-    padding: 20px;
-    margin-bottom: 18px;
-    border-radius: 14px;
-    box-sizing: border-box;
-  }
-
-  .notices-header h1 {
-    font-size: 24px;
-    line-height: 1.3;
-  }
-
-  .notices-header p {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  /* NOTICE LIST */
-
-  .notices-list {
-    width: 100%;
-    gap: 14px;
-  }
-
-  /* NOTICE CARD */
 
   .notice-card {
-    width: 100%;
     padding: 18px;
-    border-radius: 14px;
-    box-sizing: border-box;
   }
 
-  /* TOP */
-
-  .notice-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .notice-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 10px;
-    font-size: 20px;
-  }
-
-  .notice-title-area h2 {
-    font-size: 17px;
-    line-height: 1.4;
-    margin-bottom: 7px;
-  }
-
-  .notice-category {
-    font-size: 11px;
-    padding: 4px 9px;
-  }
-
-  /* DESCRIPTION */
-
-  .notice-description {
-    margin-top: 15px;
-    padding-left: 0;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* FOOTER */
-
+  .notice-description,
   .notice-footer {
-    margin-top: 15px;
-    padding-top: 12px;
     padding-left: 0;
-    font-size: 12px;
   }
-
-  /* EMPTY */
-
-  .empty-notices {
-    width: 100%;
-    padding: 50px 20px;
-    box-sizing: border-box;
-  }
-
-  .empty-icon {
-    font-size: 45px;
-  }
-
-  .empty-notices h2 {
-    font-size: 20px;
-  }
-
-  .empty-notices p {
-    font-size: 14px;
-  }
-
-}
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .notices-content {
-    padding: 15px 10px 25px;
-  }
-
-  .notices-header {
-    padding: 17px;
-    border-radius: 12px;
-  }
-
-  .notices-header h1 {
-    font-size: 21px;
-  }
-
-  .notices-header p {
-    font-size: 13px;
-  }
-
-  .notice-card {
-    padding: 15px;
-    border-radius: 12px;
-  }
-
-  .notice-top {
-    gap: 9px;
-  }
-
-  .notice-icon {
-    width: 38px;
-    height: 38px;
-    min-width: 38px;
-    font-size: 18px;
-  }
-
-  .notice-title-area h2 {
-    font-size: 16px;
-  }
-
-  .notice-description {
-    font-size: 13px;
-  }
-
-  .notice-footer {
-    font-size: 11px;
-  }
-
 }

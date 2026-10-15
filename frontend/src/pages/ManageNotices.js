@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
 
@@ -24,7 +25,6 @@ function ManageNotices() {
       }
     } catch (error) {
       console.error("Notice Error:", error);
-
       toast.error("Failed to load notices");
     }
   };
@@ -49,9 +49,7 @@ function ManageNotices() {
     e.preventDefault();
 
     if (!title.trim() || !description.trim()) {
-      toast.warning(
-        "Title and description are required"
-      );
+      toast.warning("Title and description are required");
       return;
     }
 
@@ -89,10 +87,7 @@ function ManageNotices() {
         fetchNotices();
       }
     } catch (error) {
-      console.error(
-        "Save Notice Error:",
-        error
-      );
+      console.error("Save Notice Error:", error);
 
       toast.error(
         error.response?.data?.message ||
@@ -110,21 +105,15 @@ function ManageNotices() {
 
     setTitle(notice.title || "");
 
-    setDescription(
-      notice.description || ""
-    );
+    setDescription(notice.description || "");
 
-    setCategory(
-      notice.category || "General"
-    );
+    setCategory(notice.category || "General");
 
     if (notice.date) {
       const noticeDate = new Date(notice.date);
 
       if (!isNaN(noticeDate.getTime())) {
-        setDate(
-          noticeDate.toISOString().split("T")[0]
-        );
+        setDate(noticeDate.toISOString().split("T")[0]);
       } else {
         setDate("");
       }
@@ -150,22 +139,14 @@ function ManageNotices() {
     }
 
     try {
-      const res = await api.delete(
-        `/admin/notice/${id}`
-      );
+      const res = await api.delete(`/admin/notice/${id}`);
 
       if (res.data.success) {
-        toast.success(
-          "Notice Deleted Successfully"
-        );
-
+        toast.success("Notice Deleted Successfully");
         fetchNotices();
       }
     } catch (error) {
-      console.error(
-        "Delete Notice Error:",
-        error
-      );
+      console.error("Delete Notice Error:", error);
 
       toast.error(
         error.response?.data?.message ||
@@ -177,34 +158,23 @@ function ManageNotices() {
   // ================= UI =================
 
   return (
-    <div
-      style={{
-        padding: "30px",
-        maxWidth: "1000px",
-        margin: "0 auto",
-      }}
-    >
+    <div className="management-page">
+      <div className="mb-3">
+        <Link to="/admin" className="btn btn-secondary btn-sm">
+          ← Back to Admin Dashboard
+        </Link>
+      </div>
 
-      <h1>📢 Manage Notices</h1>
-
-      <p>
-        Add, update and delete university notices.
-      </p>
+      <div className="mb-4">
+        <h1 className="fw-bold mb-1">📢 Manage Notices</h1>
+        <p className="text-muted mb-0">
+          Add, update and delete university announcements.
+        </p>
+      </div>
 
       {/* ================= FORM ================= */}
 
-      <div
-        style={{
-          background: "#ffffff",
-          padding: "25px",
-          borderRadius: "10px",
-          marginTop: "20px",
-          marginBottom: "30px",
-          boxShadow:
-            "0 2px 10px rgba(0,0,0,0.1)",
-        }}
-      >
-
+      <div className="management-form">
         <h2>
           {editingId
             ? "✏️ Edit Notice"
@@ -212,261 +182,127 @@ function ManageNotices() {
         </h2>
 
         <form onSubmit={handleSubmit}>
-
           {/* TITLE */}
-
-          <div style={{ marginBottom: "15px" }}>
-            <label>
-              <strong>Notice Title</strong>
-            </label>
-
+          <div className="mb-3">
+            <label>Notice Title</label>
             <input
               type="text"
               value={title}
-              onChange={(e) =>
-                setTitle(e.target.value)
-              }
+              onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter notice title"
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "5px",
-                border:
-                  "1px solid #ccc",
-                borderRadius: "6px",
-              }}
             />
           </div>
 
           {/* DESCRIPTION */}
-
-          <div style={{ marginBottom: "15px" }}>
-            <label>
-              <strong>Description</strong>
-            </label>
-
+          <div className="mb-3">
+            <label>Description</label>
             <textarea
               value={description}
-              onChange={(e) =>
-                setDescription(e.target.value)
-              }
+              onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter notice details"
               rows="5"
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "5px",
-                border:
-                  "1px solid #ccc",
-                borderRadius: "6px",
-              }}
             />
           </div>
 
-          {/* CATEGORY */}
+          <div className="row g-3 mb-4">
+            {/* CATEGORY */}
+            <div className="col-md-6">
+              <label>Category</label>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="General">General</option>
+                <option value="Exam">Exam</option>
+                <option value="Admission">Admission</option>
+                <option value="Event">Event</option>
+                <option value="Holiday">Holiday</option>
+              </select>
+            </div>
 
-          <div style={{ marginBottom: "15px" }}>
-            <label>
-              <strong>Category</strong>
-            </label>
-
-            <select
-              value={category}
-              onChange={(e) =>
-                setCategory(e.target.value)
-              }
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "5px",
-                border:
-                  "1px solid #ccc",
-                borderRadius: "6px",
-              }}
-            >
-              <option value="General">
-                General
-              </option>
-
-              <option value="Exam">
-                Exam
-              </option>
-
-              <option value="Admission">
-                Admission
-              </option>
-
-              <option value="Event">
-                Event
-              </option>
-
-              <option value="Holiday">
-                Holiday
-              </option>
-            </select>
-          </div>
-
-          {/* DATE */}
-
-          <div style={{ marginBottom: "15px" }}>
-            <label>
-              <strong>Notice Date</strong>
-            </label>
-
-            <input
-              type="date"
-              value={date}
-              onChange={(e) =>
-                setDate(e.target.value)
-              }
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "5px",
-                border:
-                  "1px solid #ccc",
-                borderRadius: "6px",
-              }}
-            />
+            {/* DATE */}
+            <div className="col-md-6">
+              <label>Notice Date</label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
           </div>
 
           {/* BUTTONS */}
-
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              padding: "10px 20px",
-              marginRight: "10px",
-              background: "#0d6efd",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-            }}
-          >
-            {loading
-              ? "Saving..."
-              : editingId
-              ? "Update Notice"
-              : "Add Notice"}
-          </button>
-
-          {editingId && (
+          <div className="d-flex align-items-center">
             <button
-              type="button"
-              onClick={clearForm}
-              style={{
-                padding: "10px 20px",
-                background: "#6c757d",
-                color: "white",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-              }}
+              className="management-submit"
+              type="submit"
+              disabled={loading}
             >
-              Cancel
+              {loading
+                ? "Saving..."
+                : editingId
+                ? "Update Notice"
+                : "Add Notice"}
             </button>
-          )}
 
+            {editingId && (
+              <button
+                className="management-cancel"
+                type="button"
+                onClick={clearForm}
+              >
+                Cancel
+              </button>
+            )}
+          </div>
         </form>
-
       </div>
 
-      {/* ================= NOTICE LIST ================= */}
+      {/* ================= NOTICES LIST ================= */}
 
-      <h2>📋 Existing Notices</h2>
+      <h2 className="fw-bold mb-3">📋 Existing Notices</h2>
 
       {notices.length === 0 ? (
-        <p>
-          No notices available. Add your first
-          notice above.
-        </p>
+        <div className="card p-4 text-center text-muted">
+          <p className="mb-0">
+            No notices available. Add your first notice above.
+          </p>
+        </div>
       ) : (
         notices.map((notice) => (
           <div
             key={notice._id}
-            style={{
-              background: "#f8f9fa",
-              padding: "20px",
-              borderRadius: "8px",
-              marginBottom: "15px",
-              border:
-                "1px solid #ddd",
-            }}
+            className="management-item"
           >
+            <h3>{notice.title}</h3>
 
-            <h3>
-              📢 {notice.title}
-            </h3>
+            <p>{notice.description}</p>
 
-            <p>
-              {notice.description}
-            </p>
+            <div className="d-flex flex-wrap gap-2 align-items-center mb-3">
+              <small>Category: {notice.category || "General"}</small>
+              {notice.date && (
+                <small>📅 {new Date(notice.date).toLocaleDateString()}</small>
+              )}
+            </div>
 
-            <p>
-              <strong>Category:</strong>{" "}
-              {notice.category ||
-                "General"}
-            </p>
-
-            <p>
-              <strong>Date:</strong>{" "}
-                {notice.date
-                  ? new Date(notice.date).toLocaleDateString("en-IN", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-              })
-              : "No date"}
-            </p>
-
-            <div
-              style={{
-                marginTop: "15px",
-              }}
-            >
-
+            <div className="d-flex align-items-center">
               <button
-                onClick={() =>
-                  handleEdit(notice)
-                }
-                style={{
-                  marginRight: "10px",
-                  padding: "8px 15px",
-                  background: "#ffc107",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
+                className="management-edit"
+                onClick={() => handleEdit(notice)}
               >
                 ✏️ Edit
               </button>
 
               <button
-                onClick={() =>
-                  handleDelete(
-                    notice._id
-                  )
-                }
-                style={{
-                  padding: "8px 15px",
-                  background: "#dc3545",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
+                className="management-delete"
+                onClick={() => handleDelete(notice._id)}
               >
                 🗑️ Delete
               </button>
-
             </div>
-
           </div>
         ))
       )}
-
     </div>
   );
 }

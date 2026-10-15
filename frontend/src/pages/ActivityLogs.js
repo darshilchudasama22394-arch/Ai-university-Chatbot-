@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import API from "../services/api";
 
@@ -74,35 +75,20 @@ function ActivityLogs() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        padding: "30px",
-        background: "#f5f7fb",
-      }}
-    >
+    <div className="activity-log-page">
+      <div className="mb-3">
+        <Link to="/admin" className="btn btn-secondary btn-sm">
+          ← Back to Admin Dashboard
+        </Link>
+      </div>
+
       {/* ================= HEADER ================= */}
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "25px",
-          flexWrap: "wrap",
-          gap: "15px",
-        }}
-      >
+      <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
         <div>
-          <h2>📋 Activity Logs</h2>
-
-          <p
-            style={{
-              color: "#6b7280",
-              marginBottom: 0,
-            }}
-          >
-            Monitor important student activities
+          <h1 className="fw-bold mb-1">📋 Activity Logs</h1>
+          <p className="activity-log-muted mb-0">
+            Monitor important student actions and system events
           </p>
         </div>
 
@@ -110,78 +96,41 @@ function ActivityLogs() {
           className="btn btn-primary"
           onClick={loadLogs}
         >
-          🔄 Refresh
+          🔄 Refresh Logs
         </button>
       </div>
 
       {/* ================= LOADING ================= */}
 
       {loading ? (
-        <div className="alert alert-info">
-          Loading activity logs...
+        <div className="card p-5 text-center text-muted">
+          <div className="spinner-border text-primary mx-auto mb-2" role="status"></div>
+          <p className="mb-0">Loading activity logs...</p>
         </div>
       ) : logs.length === 0 ? (
-        <div className="alert alert-info">
-          No activity logs found.
+        <div className="card p-5 text-center text-muted">
+          <p className="mb-0">No activity logs found.</p>
         </div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-          }}
-        >
+        <div className="d-flex flex-column gap-3">
           {logs.map((log) => (
             <div
               key={log._id}
-              style={{
-                background: "#ffffff",
-                borderRadius: "15px",
-                padding: "20px",
-                boxShadow:
-                  "0 5px 20px rgba(0,0,0,0.08)",
-                border:
-                  "1px solid #e5e7eb",
-              }}
+              className="activity-log-card"
             >
               {/* USER */}
-
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent:
-                    "space-between",
-                  alignItems: "flex-start",
-                  gap: "15px",
-                  flexWrap: "wrap",
-                }}
-              >
+              <div className="d-flex justify-content-between align-items-start gap-3 flex-wrap">
                 <div>
-                  <h5 style={{ marginBottom: "5px" }}>
+                  <h5 className="fw-bold mb-1">
                     👤 {log.userName}
                   </h5>
 
-                  <p
-                    style={{
-                      margin: 0,
-                      color: "#6b7280",
-                    }}
-                  >
+                  <p className="activity-log-muted mb-0">
                     📧 {log.userEmail}
                   </p>
                 </div>
 
-                <span
-                  style={{
-                    background: "#fee2e2",
-                    color: "#991b1b",
-                    padding: "7px 12px",
-                    borderRadius: "20px",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                  }}
-                >
+                <span className="activity-log-badge">
                   {getActionText(log.action)}
                 </span>
               </div>
@@ -189,68 +138,29 @@ function ActivityLogs() {
               <hr />
 
               {/* DESCRIPTION */}
-
-              <p>
-                <strong>
-                  Activity:
-                </strong>{" "}
-                {log.description}
+              <p className="mb-2">
+                <strong>Activity:</strong> {log.description}
               </p>
 
               {/* DETAILS */}
-
               {log.details?.question && (
-                <div
-                  style={{
-                    background: "#f8fafc",
-                    borderRadius: "10px",
-                    padding: "12px",
-                    marginTop: "10px",
-                  }}
-                >
-                  <strong>
-                    ❓ Deleted Question:
-                  </strong>
-
-                  <p
-                    style={{
-                      marginTop: "5px",
-                      marginBottom: 0,
-                    }}
-                  >
+                <div className="activity-log-details">
+                  <strong>❓ Deleted Question:</strong>
+                  <p className="mt-1 mb-0">
                     {log.details.question}
                   </p>
                 </div>
               )}
 
               {/* DELETE COUNT */}
-
-              {log.details?.deletedCount !==
-                undefined && (
-                <div
-                  style={{
-                    background: "#fff7ed",
-                    padding: "10px",
-                    borderRadius: "10px",
-                    marginTop: "10px",
-                  }}
-                >
-                  🗑️ Total chats deleted:{" "}
-                  <strong>
-                    {log.details.deletedCount}
-                  </strong>
+              {log.details?.deletedCount !== undefined && (
+                <div className="activity-log-count mt-2">
+                  🗑️ Total chats deleted: <strong>{log.details.deletedCount}</strong>
                 </div>
               )}
 
               {/* DATE */}
-
-              <small
-                style={{
-                  display: "block",
-                  marginTop: "15px",
-                  color: "#6b7280",
-                }}
-              >
+              <small className="activity-log-muted d-block mt-3">
                 📅 {formatDate(log.createdAt)}
               </small>
             </div>

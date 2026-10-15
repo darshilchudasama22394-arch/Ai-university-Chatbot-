@@ -110,6 +110,7 @@ function Dashboard() {
           answer:
             response.data.answer ||
             "Sorry, I could not generate an answer.",
+          sources: response.data.sources || [],
         };
 
         setChats((prev) => [
@@ -253,13 +254,13 @@ function Dashboard() {
 
     const doc = new jsPDF();
 
-    doc.setFontSize(18);
+    doc.setFontSize(14);
 
-    doc.text(
-      "AI University Helpdesk",
-      20,
-      20
+    const titleLines = doc.splitTextToSize(
+      "PU PIET Dep.",
+      170
     );
+    doc.text(titleLines, 20, 20);
 
     doc.setFontSize(10);
 
@@ -270,7 +271,7 @@ function Dashboard() {
         "Student"
       }`,
       20,
-      28
+      20 + titleLines.length * 6
     );
 
     let y = 42;
@@ -316,9 +317,16 @@ function Dashboard() {
         y += 8;
 
 
+        const answerWithSources = [
+          chat.answer,
+          ...(chat.sources?.length
+            ? [`Sources: ${chat.sources.join("; ")}`]
+            : []),
+        ].join("\n\n");
+
         const answerLines =
           doc.splitTextToSize(
-            chat.answer,
+            answerWithSources,
             170
           );
 
@@ -357,11 +365,10 @@ function Dashboard() {
   // =====================================================
 
   const suggestions = [
-    "What is the admission process?",
-    "How can I apply for a scholarship?",
-    "What are the hostel facilities?",
-    "When are the semester exams?",
-    "How do I pay my fees?",
+    "What courses are listed in BCA Semester 1?",
+    "What courses are listed in BSc IT Semester 1?",
+    "What courses are listed in IMCA Semester 1?",
+    "What courses are listed in PG Semester 2?",
   ];
 
 
@@ -396,7 +403,7 @@ function Dashboard() {
         <div className="dashboard-header">
 
           <h2>
-            🎓 AI University Helpdesk
+            🎓 PU PIET Dep.
           </h2>
 
           <p>
@@ -419,6 +426,16 @@ function Dashboard() {
 
         <div className="chat-card">
 
+          <div className="booklet-notice">
+            <span className="booklet-notice-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>Answers grounded in your academic booklets</strong>
+              <p>
+                IMCA, BSc IT, and BCA Semester 1 (2026–27), plus PG Semester 2 (2025–26).
+                Questions outside these documents are not answered.
+              </p>
+            </div>
+          </div>
 
           {/* =================================================
               SEARCH
@@ -426,8 +443,8 @@ function Dashboard() {
 
           <input
             type="text"
-            className="form-control mb-3"
-            placeholder="🔍 Search in current chat..."
+            className="form-control chat-search mb-2"
+            placeholder="Search this conversation..."
             value={search}
             onChange={(e) =>
               setSearch(e.target.value)
@@ -510,7 +527,7 @@ function Dashboard() {
             onChange={(e) =>
               setQuestion(e.target.value)
             }
-            placeholder="Ask anything about your university..."
+            placeholder="Ask about information in the academic booklets..."
           />
 
 

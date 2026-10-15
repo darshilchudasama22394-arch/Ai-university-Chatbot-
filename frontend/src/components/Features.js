@@ -1,14 +1,16 @@
+import React from "react";
+
 function Features() {
   const features = [
     {
       icon: "🤖",
       title: "AI Chatbot",
-      description: "Get instant answers to university-related questions."
+      description: "Get answers grounded only in the four academic booklets."
     },
     {
       icon: "💬",
-      title: "24/7 Support",
-      description: "Ask questions anytime from anywhere."
+      title: "Booklet Guidance",
+      description: "Ask about the supported academic programmes and semesters."
     },
     {
       icon: "🔒",
@@ -24,15 +26,15 @@ function Features() {
 
   return (
     <section id="features" className="container py-5">
-      <h2 className="text-center text-white fw-bold mb-5">
+      <h2 className="text-center fw-bold mb-5">
         Why Choose Our Helpdesk?
       </h2>
 
-      <div className="row">
+      <div className="row g-4">
         {features.map((feature, index) => (
-          <div className="col-md-6 col-lg-3 mb-4" key={index}>
-            <div className="card h-100 shadow border-0 rounded-4 text-center p-4">
-              <div style={{ fontSize: "50px" }}>{feature.icon}</div>
+          <div className="col-md-6 col-lg-3" key={index}>
+            <div className="card h-100 text-center p-4">
+              <div style={{ fontSize: "44px", lineHeight: "1.1" }}>{feature.icon}</div>
 
               <h4 className="mt-3">{feature.title}</h4>
 

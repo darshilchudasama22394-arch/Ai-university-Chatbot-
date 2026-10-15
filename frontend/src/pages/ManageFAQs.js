@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
 
@@ -154,35 +155,23 @@ function ManageFAQs() {
   // ================= UI =================
 
   return (
-    <div
-      style={{
-        padding: "30px",
-        maxWidth: "1000px",
-        margin: "0 auto",
-      }}
-    >
+    <div className="management-page">
+      <div className="mb-3">
+        <Link to="/admin" className="btn btn-secondary btn-sm">
+          ← Back to Admin Dashboard
+        </Link>
+      </div>
 
-      <h1>❓ Manage FAQs</h1>
-
-      <p>
-        Add, update and delete frequently asked
-        questions.
-      </p>
+      <div className="mb-4">
+        <h1 className="fw-bold mb-1">❓ Manage FAQs</h1>
+        <p className="text-muted mb-0">
+          Add, update and delete frequently asked questions.
+        </p>
+      </div>
 
       {/* ================= FORM ================= */}
 
-      <div
-        style={{
-          background: "#ffffff",
-          padding: "25px",
-          borderRadius: "10px",
-          marginTop: "20px",
-          marginBottom: "30px",
-          boxShadow:
-            "0 2px 10px rgba(0,0,0,0.1)",
-        }}
-      >
-
+      <div className="management-form">
         <h2>
           {editingId
             ? "✏️ Edit FAQ"
@@ -190,12 +179,10 @@ function ManageFAQs() {
         </h2>
 
         <form onSubmit={handleSubmit}>
-
           {/* QUESTION */}
-
-          <div style={{ marginBottom: "15px" }}>
+          <div className="mb-3">
             <label>
-              <strong>Question</strong>
+              Question
             </label>
 
             <input
@@ -205,22 +192,13 @@ function ManageFAQs() {
                 setQuestion(e.target.value)
               }
               placeholder="Enter question"
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "5px",
-                border:
-                  "1px solid #ccc",
-                borderRadius: "6px",
-              }}
             />
           </div>
 
           {/* ANSWER */}
-
-          <div style={{ marginBottom: "15px" }}>
+          <div className="mb-3">
             <label>
-              <strong>Answer</strong>
+              Answer
             </label>
 
             <textarea
@@ -230,22 +208,13 @@ function ManageFAQs() {
               }
               placeholder="Enter answer"
               rows="5"
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "5px",
-                border:
-                  "1px solid #ccc",
-                borderRadius: "6px",
-              }}
             />
           </div>
 
           {/* CATEGORY */}
-
-          <div style={{ marginBottom: "15px" }}>
+          <div className="mb-4">
             <label>
-              <strong>Category</strong>
+              Category
             </label>
 
             <input
@@ -255,140 +224,82 @@ function ManageFAQs() {
                 setCategory(e.target.value)
               }
               placeholder="Example: Admission"
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "5px",
-                border:
-                  "1px solid #ccc",
-                borderRadius: "6px",
-              }}
             />
           </div>
 
           {/* BUTTONS */}
-
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              padding: "10px 20px",
-              marginRight: "10px",
-              background: "#0d6efd",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-            }}
-          >
-            {loading
-              ? "Saving..."
-              : editingId
-              ? "Update FAQ"
-              : "Add FAQ"}
-          </button>
-
-          {editingId && (
+          <div className="d-flex align-items-center">
             <button
-              type="button"
-              onClick={clearForm}
-              style={{
-                padding: "10px 20px",
-                background: "#6c757d",
-                color: "white",
-                border: "none",
-                borderRadius: "6px",
-                cursor: "pointer",
-              }}
+              className="management-submit"
+              type="submit"
+              disabled={loading}
             >
-              Cancel
+              {loading
+                ? "Saving..."
+                : editingId
+                ? "Update FAQ"
+                : "Add FAQ"}
             </button>
-          )}
 
+            {editingId && (
+              <button
+                className="management-cancel"
+                type="button"
+                onClick={clearForm}
+              >
+                Cancel
+              </button>
+            )}
+          </div>
         </form>
-
       </div>
 
       {/* ================= FAQ LIST ================= */}
 
-      <h2>📋 Existing FAQs</h2>
+      <h2 className="fw-bold mb-3">📋 Existing FAQs</h2>
 
       {faqs.length === 0 ? (
-        <p>
-          No FAQs available. Add your first FAQ
-          above.
-        </p>
+        <div className="card p-4 text-center text-muted">
+          <p className="mb-0">
+            No FAQs available. Add your first FAQ above.
+          </p>
+        </div>
       ) : (
         faqs.map((faq) => (
           <div
             key={faq._id}
-            style={{
-              background: "#f8f9fa",
-              padding: "20px",
-              borderRadius: "8px",
-              marginBottom: "15px",
-              border:
-                "1px solid #ddd",
-            }}
+            className="management-item"
           >
+            <h3>{faq.question}</h3>
 
-            <h3>
-              {faq.question}
-            </h3>
-
-            <p>
-              {faq.answer}
-            </p>
+            <p>{faq.answer}</p>
 
             <small>
-              Category:{" "}
-              {faq.category || "General"}
+              Category: {faq.category || "General"}
             </small>
 
-            <div
-              style={{
-                marginTop: "15px",
-              }}
-            >
-
+            <div className="mt-3 d-flex align-items-center">
               <button
+                className="management-edit"
                 onClick={() =>
                   handleEdit(faq)
                 }
-                style={{
-                  marginRight: "10px",
-                  padding: "8px 15px",
-                  background: "#ffc107",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
               >
                 ✏️ Edit
               </button>
 
               <button
+                className="management-delete"
                 onClick={() =>
                   handleDelete(faq._id)
                 }
-                style={{
-                  padding: "8px 15px",
-                  background: "#dc3545",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
               >
                 🗑️ Delete
               </button>
-
             </div>
-
           </div>
         ))
       )}
-
     </div>
   );
 }

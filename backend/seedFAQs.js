@@ -50,7 +50,7 @@ const faqs = [
   {
     question: "Where can I find university notices?",
     answer:
-      "University notices can be viewed from the Notices section of the AI University Helpdesk.",
+      "University notices can be viewed from the Notices section of PU PIET Dep.",
     category: "General",
   },
   {
@@ -74,7 +74,7 @@ const faqs = [
   {
     question: "How can I get technical support?",
     answer:
-      "You can use the AI University Helpdesk chatbot or contact the university technical support department.",
+      "You can use PU PIET Dep. or contact the university technical support department.",
     category: "Technical Support",
   },
 ];

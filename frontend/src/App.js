@@ -19,6 +19,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import VerifyOTP from "./pages/VerifyOTP";
 import ResetPassword from "./pages/ResetPassword";
 import ActivityLogs from "./pages/ActivityLogs";
+import { applyTheme, getStoredTheme } from "./utils/theme";
 
 // ================= ADMIN =================
 import StudentDashboard from "./pages/StudentDashboard";
@@ -40,32 +41,7 @@ function App() {
   // =====================================================
 
   useEffect(() => {
-
-    let theme = localStorage.getItem("theme");
-
-    if (!theme) {
-      theme = "dark";
-      localStorage.setItem("theme", "dark");
-    }
-
-    document.body.classList.remove(
-      "dark-mode",
-      "light-mode"
-    );
-
-    document.documentElement.classList.remove(
-      "dark-mode",
-      "light-mode"
-    );
-
-    document.body.classList.add(
-      `${theme}-mode`
-    );
-
-    document.documentElement.classList.add(
-      `${theme}-mode`
-    );
-
+    applyTheme(getStoredTheme());
   }, []);
 
   return (

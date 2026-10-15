@@ -125,9 +125,9 @@ const login = async (req, res) => {
     // =================================================
 
     await transporter.sendMail({
-      from: `"AI University Helpdesk" <${process.env.EMAIL_USER}>`,
+      from: `"PU PIET Dep." <${process.env.EMAIL_USER}>`,
       to: user.email,
-      subject: "AI University Helpdesk - Login OTP",
+      subject: "PU PIET Dep. - Login OTP",
       html: `
         <div style="
           font-family: Arial, sans-serif;
@@ -139,7 +139,7 @@ const login = async (req, res) => {
         ">
 
           <h2 style="color:#4f46e5;">
-            AI University Helpdesk
+            PU PIET Dep.
           </h2>
 
           <p>
@@ -175,7 +175,7 @@ const login = async (req, res) => {
           <hr />
 
           <p style="color:#64748b;">
-            AI University Helpdesk
+            PU PIET Dep.
           </p>
 
         </div>
@@ -372,12 +372,12 @@ const forgotPassword = async (req, res) => {
     await user.save();
 
     await transporter.sendMail({
-      from: `"AI University Helpdesk" <${process.env.EMAIL_USER}>`,
+      from: `"PU PIET Dep." <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject:
-        "AI University Helpdesk - Password Reset OTP",
+        "PU PIET Dep. - Password Reset OTP",
       html: `
-        <h2>AI University Helpdesk</h2>
+        <h2>PU PIET Dep.</h2>
 
         <p>
           Hello <strong>${user.fullName}</strong>,

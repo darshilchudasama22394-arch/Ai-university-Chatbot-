@@ -37,7 +37,7 @@ function Navbar() {
           className="ai-navbar-logo"
           onClick={() => setMenuOpen(false)}
         >
-          🎓 AI Helpdesk
+          🎓 PU PIET Dep.
         </Link>
 
         {/* DESKTOP MENU */}

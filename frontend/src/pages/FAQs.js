@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/api";
+import "./FAQs.css";
 
 const FAQs = () => {
   const [faqs, setFaqs] = useState([]);
@@ -14,9 +16,6 @@ const FAQs = () => {
 
         console.log("FAQ response:", res.data);
 
-        // Backend response:
-        // { success: true, faqs: [...] }
-
         const list = Array.isArray(res.data?.faqs)
           ? res.data.faqs
           : Array.isArray(res.data)
@@ -26,7 +25,6 @@ const FAQs = () => {
         setFaqs(list);
       } catch (err) {
         console.error("FAQ Error:", err);
-
         setError("Failed to load FAQs");
       } finally {
         setLoading(false);
@@ -36,107 +34,87 @@ const FAQs = () => {
     fetchFAQs();
   }, []);
 
-  // ================= TOGGLE FAQ =================
-
   const toggle = (index) => {
-    setOpenIndex(
-      openIndex === index ? null : index
-    );
+    setOpenIndex(openIndex === index ? null : index);
   };
-
-  // ================= LOADING =================
 
   if (loading) {
     return (
-      <div style={{ padding: 24 }}>
-        Loading FAQs...
+      <div className="faqs-page faqs-state">
+        <div className="faqs-loader"></div>
+        <p>Loading FAQs...</p>
       </div>
     );
   }
-
-  // ================= ERROR =================
 
   if (error) {
     return (
-      <div
-        style={{
-          padding: 24,
-          color: "red",
-        }}
-      >
-        {error}
+      <div className="faqs-page faqs-error">
+        <div className="alert alert-danger">{error}</div>
       </div>
     );
   }
 
-  // ================= UI =================
-
   return (
-    <div
-      style={{
-        padding: 24,
-        maxWidth: 800,
-        margin: "0 auto",
-      }}
-    >
-      <h1>❓ Frequently Asked Questions</h1>
+    <div className="faqs-page">
+      <div className="faqs-top-nav">
+        <Link to="/dashboard" className="faqs-back-btn">
+          ← Back to Dashboard
+        </Link>
+      </div>
 
-      <p>
-        Find answers to common university questions.
-      </p>
+      <div className="faqs-header">
+        <h1>❓ Frequently Asked Questions</h1>
+        <p>Find answers to common university questions.</p>
+      </div>
 
-      {/* NO FAQ */}
       {faqs.length === 0 ? (
-        <div
-          style={{
-            padding: 20,
-            border: "1px solid #ddd",
-            borderRadius: 8,
-            marginTop: 20,
-          }}
-        >
-          <p>No FAQs available yet.</p>
+        <div className="faq-empty">
+          <span className="faq-empty-icon" aria-hidden="true">💡</span>
+          <h3>No FAQs Available Yet</h3>
+          <p>Frequently asked questions will appear here once added by administrators.</p>
         </div>
       ) : (
-        /* FAQ LIST */
-        faqs.map((faq, index) => (
-          <div
-            key={faq._id || faq.id || index}
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: 8,
-              padding: 16,
-              marginBottom: 12,
-              cursor: "pointer",
-              background: "#fafafa",
-            }}
-            onClick={() => toggle(index)}
-          >
-            {/* QUESTION */}
-            <h3
-              style={{
-                margin: 0,
-                color: "#222",
-              }}
-            >
-              {openIndex === index ? "▼" : "▶"}{" "}
-              {faq.question}
-            </h3>
-
-            {/* ANSWER */}
-            {openIndex === index && (
-              <p
-                style={{
-                  marginTop: 12,
-                  color: "#333",
-                  lineHeight: 1.6,
+        <div className="faqs-list">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                key={faq._id || faq.id || index}
+                className={`faq-entry ${isOpen ? "faq-entry-open" : ""}`}
+                onClick={() => toggle(index)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggle(index);
+                  }
                 }}
               >
-                {faq.answer}
-              </p>
-            )}
-          </div>
-        ))
+                <div className="faq-entry-header">
+                  <h3>
+                    <span className="faq-icon-arrow" aria-hidden="true">
+                      {isOpen ? "▼" : "▶"}
+                    </span>
+                    {faq.question}
+                  </h3>
+                </div>
+
+                {isOpen && (
+                  <div className="faq-answer-container">
+                    <p className="faq-answer">{faq.answer}</p>
+                    {faq.category && (
+                      <span className="faq-category-badge">
+                        Category: {faq.category}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );

@@ -18,6 +18,11 @@ const chatSchema = new mongoose.Schema(
       required: true,
     },
 
+    sources: {
+      type: [String],
+      default: [],
+    },
+
     sessionId: {
       type: String,
       default: null,

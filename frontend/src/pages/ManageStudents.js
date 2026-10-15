@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
@@ -68,127 +69,147 @@ function ManageStudents() {
   };
 
   const exportPDF = () => {
-  const doc = new jsPDF();
+    const doc = new jsPDF();
 
-  doc.setFontSize(18);
-  doc.text("AI University Helpdesk", 14, 15);
+    doc.setFontSize(14);
+    const titleLines = doc.splitTextToSize(
+      "PU PIET Dep.",
+      182
+    );
+    doc.text(titleLines, 14, 15);
 
-  doc.setFontSize(12);
-  doc.text("Students Report", 14, 25);
+    doc.setFontSize(12);
+    const reportY = 18 + titleLines.length * 6;
+    doc.text("Students Report", 14, reportY);
 
-  autoTable(doc, {
-    startY: 35,
-    head: [["ID", "Name", "Email", "Role"]],
-    body: students.map((student) => [
-      student._id,
-      student.fullName,
-      student.email,
-      student.role,
-    ]),
-  });
+    autoTable(doc, {
+      startY: reportY + 10,
+      head: [["ID", "Name", "Email", "Role"]],
+      body: students.map((student) => [
+        student._id,
+        student.fullName,
+        student.email,
+        student.role,
+      ]),
+    });
 
-  doc.save("Students.pdf");
-};
+    doc.save("Students.pdf");
+  };
 
   const filteredStudents = students.filter((student) =>
-  (student.fullName || "").toLowerCase().includes(search.toLowerCase()) ||
-  (student.email || "").toLowerCase().includes(search.toLowerCase())
-);
+    (student.fullName || "").toLowerCase().includes(search.toLowerCase()) ||
+    (student.email || "").toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className="container mt-5">
+    <div className="container py-5" style={{ maxWidth: "1140px" }}>
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
-
-        <h2>👨‍🎓 Manage Students</h2>
-
-        <div className="d-flex gap-2">
-
-  <button
-    className="btn btn-success"
-    onClick={exportExcel}
-  >
-    📥 Excel
-  </button>
-
-  <button
-    className="btn btn-danger"
-    onClick={exportPDF}
-  >
-    📄 PDF
-  </button>
-
-</div>
-
-        <div className="mb-3 mt-3">
-  <input
-    type="text"
-    className="form-control"
-    placeholder="🔍 Search by Name or Email..."
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-  />
-</div>
-
+      <div className="mb-3">
+        <Link to="/admin" className="btn btn-secondary btn-sm">
+          ← Back to Admin Dashboard
+        </Link>
       </div>
 
-      <table className="table table-bordered table-hover shadow">
+      <div className="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <h2 className="fw-bold mb-1">👨‍🎓 Manage Students</h2>
+          <p className="text-muted mb-0">View registered students, export lists, and manage user accounts</p>
+        </div>
 
-        <thead className="table-dark">
+        <div className="d-flex gap-2">
+          <button
+            className="btn btn-success"
+            onClick={exportExcel}
+          >
+            📥 Export Excel
+          </button>
 
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th width="120">Action</th>
-          </tr>
+          <button
+            className="btn btn-danger"
+            onClick={exportPDF}
+          >
+            📄 Export PDF
+          </button>
+        </div>
+      </div>
 
-        </thead>
+      <div className="mb-4">
+        <input
+          type="text"
+          className="form-control"
+          style={{ height: "46px" }}
+          placeholder="🔍 Search by Name or Email..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-        <tbody>
-
-          {students.length > 0 ? (
-            filteredStudents.map((student) => (
-              <tr key={student._id}>
-
-                <td>{student._id}</td>
-
-                <td>{student.fullName}</td>
-
-                <td>{student.email}</td>
-
-                <td>{student.role}</td>
-
-                <td>
-
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => deleteStudent(student._id)}
-                  >
-                    Delete
-                  </button>
-
-                </td>
-
+      <div className="card shadow-sm border overflow-hidden">
+        <div className="table-responsive">
+          <table className="table table-hover align-middle mb-0">
+            <thead className="table-light">
+              <tr>
+                <th style={{ width: "220px" }}>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th style={{ width: "120px" }}>Role</th>
+                <th style={{ width: "120px" }} className="text-end">Action</th>
               </tr>
-            ))
-          ) : (
-            <tr>
+            </thead>
 
-              <td
-                colSpan="5"
-                className="text-center"
-              >
-                No Students Found
-              </td>
+            <tbody>
+              {filteredStudents.length > 0 ? (
+                filteredStudents.map((student) => (
+                  <tr key={student._id}>
+                    <td className="text-muted font-monospace" style={{ fontSize: "12px" }}>
+                      {student._id}
+                    </td>
 
-            </tr>
-          )}
+                    <td className="fw-semibold">
+                      {student.fullName || "Unnamed"}
+                    </td>
 
-        </tbody>
+                    <td>{student.email}</td>
 
-      </table>
+                    <td>
+                      <span
+                        className="badge"
+                        style={{
+                          background: student.role === "admin" ? "rgba(217, 119, 6, 0.15)" : "rgba(79, 70, 229, 0.12)",
+                          color: student.role === "admin" ? "#d97706" : "#4f46e5",
+                          fontWeight: "700",
+                          padding: "6px 10px",
+                          borderRadius: "9999px"
+                        }}
+                      >
+                        {student.role || "student"}
+                      </span>
+                    </td>
+
+                    <td className="text-end">
+                      <button
+                        className="btn btn-outline-danger btn-sm"
+                        onClick={() => deleteStudent(student._id)}
+                      >
+                        🗑️ Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="5"
+                    className="text-center py-5 text-muted"
+                  >
+                    No Students Found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
     </div>
   );

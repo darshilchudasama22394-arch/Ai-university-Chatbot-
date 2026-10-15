@@ -12,7 +12,7 @@ function ChatBox({ chats }) {
     >
       {chats.length === 0 ? (
         <div className="text-center text-muted mt-5">
-          <h5>🤖 AI University Helpdesk</h5>
+          <h5>🤖 PU PIET Dep.</h5>
           <p>Ask your first question...</p>
         </div>
       ) : (

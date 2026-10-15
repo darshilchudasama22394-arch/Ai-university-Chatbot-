@@ -5,11 +5,12 @@ function Hero() {
     <div className="container text-center text-white py-5">
 
       <h1 className="display-3 fw-bold">
-        AI University Helpdesk
+        PU PIET Dep.
       </h1>
 
       <p className="lead mt-4">
-        Ask anything about your university and get instant answers with AI.
+        Ask about the supplied academic booklets and get clear, source-linked
+        answers. Questions outside those documents are not answered.
       </p>
 
       <div className="mt-5">
@@ -29,4 +30,3 @@ function Hero() {
 }
 
 export default Hero;
-

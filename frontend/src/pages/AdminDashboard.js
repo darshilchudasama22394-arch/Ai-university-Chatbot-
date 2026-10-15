@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import { applyTheme } from "../utils/theme";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
@@ -107,24 +108,7 @@ const AdminDashboard = () => {
   // =====================================================
 
   useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark-mode");
-      document.documentElement.classList.add(
-        "dark-mode"
-      );
-    } else {
-      document.body.classList.remove(
-        "dark-mode"
-      );
-      document.documentElement.classList.remove(
-        "dark-mode"
-      );
-    }
-
-    localStorage.setItem(
-      "theme",
-      darkMode ? "dark" : "light"
-    );
+    applyTheme(darkMode ? "dark" : "light");
   }, [darkMode]);
 
   // =====================================================
@@ -937,7 +921,7 @@ const AdminDashboard = () => {
           </h3>
 
           <p>
-            AI University Helpdesk
+            PU PIET Dep.
           </p>
 
         </div>
@@ -1092,8 +1076,7 @@ const AdminDashboard = () => {
                 </h1>
 
                 <p>
-                  Welcome to the AI
-                  University Helpdesk
+                  Welcome to PU PIET Dep.
                   Admin Panel.
                 </p>
 

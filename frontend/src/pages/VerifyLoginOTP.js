@@ -221,7 +221,7 @@ function VerifyLoginOTP() {
           </h1>
 
           <p>
-            AI University Helpdesk
+            PU PIET Dep.
           </p>
 
         </div>

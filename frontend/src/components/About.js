@@ -1,24 +1,25 @@
+import React from "react";
+
 function About() {
   return (
     <section id="about" className="container py-5">
-      <div className="row align-items-center">
+      <div className="row align-items-center g-5">
 
-        <div className="col-lg-6 text-white">
+        <div className="col-lg-6">
 
           <h2 className="fw-bold mb-4">
-            About AI University Helpdesk
+            About PU PIET Dep.
           </h2>
 
           <p className="lead">
-            AI University Helpdesk is a smart web application that helps
-            students get instant answers to university-related questions.
+            PU PIET Dep. helps students find
+            answers in four supplied academic booklets.
           </p>
 
           <p>
-            Students can ask questions about admissions, courses,
-            examinations, fees, hostel facilities, notices, and much more.
-            The chatbot provides quick and accurate responses, reducing the
-            need to visit administrative offices.
+            It covers IMCA, BSc IT, and BCA Semester 1 for 2026–27, plus
+            postgraduate Semester 2 for 2025–26. The assistant does not answer
+            questions when the information is outside those booklets.
           </p>
 
         </div>
@@ -29,14 +30,14 @@ function About() {
             className="bg-white rounded-4 shadow p-5"
             style={{ maxWidth: "400px", margin: "auto" }}
           >
-            <h1 style={{ fontSize: "80px" }}>🤖</h1>
+            <div style={{ fontSize: "72px", lineHeight: "1.1", marginBottom: "16px" }}>🤖</div>
 
             <h4 className="fw-bold">
-              24/7 AI Assistant
+              Booklet-based AI Assistant
             </h4>
 
             <p className="text-muted">
-              Always available to help students.
+              Answers are grounded in the supplied academic booklets.
             </p>
 
           </div>

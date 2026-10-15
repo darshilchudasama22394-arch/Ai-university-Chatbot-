@@ -56,7 +56,7 @@ app.use("/api/admin/activity", activityRoutes);
 // Test Route
 app.get("/", (req, res) => {
   res.send(
-    "🚀 AI University Helpdesk Backend Running with MongoDB..."
+    "🚀 PU PIET Dep. backend running with MongoDB..."
   );
 });
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { applyTheme } from "../utils/theme";
 import "./Settings.css";
 
 function Settings() {
@@ -28,27 +30,7 @@ function Settings() {
   // =====================================================
 
   useEffect(() => {
-
-    const theme =
-      darkMode ? "dark" : "light";
-
-    // Save theme
-    localStorage.setItem(
-      "theme",
-      theme
-    );
-
-    // Remove old theme
-    document.body.classList.remove(
-      "dark-mode",
-      "light-mode"
-    );
-
-    // Add new theme
-    document.body.classList.add(
-      `${theme}-mode`
-    );
-
+    applyTheme(darkMode ? "dark" : "light");
   }, [darkMode]);
 
   // =====================================================
@@ -68,6 +50,12 @@ function Settings() {
     <div className="settings-page">
 
       <div className="settings-container">
+
+        <div className="settings-top-nav">
+          <Link to="/dashboard" className="settings-back-btn">
+            ← Back to Dashboard
+          </Link>
+        </div>
 
         <div className="settings-card">
 

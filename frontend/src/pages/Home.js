@@ -10,14 +10,15 @@ function Home() {
 
       <Navbar />
 
-      <div className="container text-center text-white py-5">
+      <div className="container text-center home-hero">
 
         <h1 className="display-3 fw-bold mt-5">
-          AI University Helpdesk
+          PU PIET Dep.
         </h1>
 
         <p className="lead mt-4">
-          Get instant answers to university-related questions using AI.
+          Get source-linked answers from four academic booklets. If a booklet
+          does not contain the answer, the assistant will say so.
         </p>
 
         <div className="home-buttons mt-5">

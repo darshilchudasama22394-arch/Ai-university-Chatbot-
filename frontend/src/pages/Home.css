@@ -1,678 +1,313 @@
 /* =====================================================
-   HOME PAGE
-===================================================== */
-/* =====================================================
-   HOME PAGE
-===================================================== */
-
-/* =====================================================
-   HOME PAGE
-===================================================== */
+   HOME PAGE - MODERN UNIVERSITY PORTAL SHOWCASE
+   ===================================================== */
 
 .home-page {
   min-height: 100vh;
-  width: 100%;
-
-  background: linear-gradient(
-    135deg,
-    #4f46e5,
-    #7c3aed,
-    #3b82f6
-  );
-
   overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(79, 70, 229, 0.35), transparent 50%),
+    radial-gradient(circle at 90% 40%, rgba(124, 58, 237, 0.15), transparent 45%),
+    #0a1020;
+  color: #ffffff;
+  position: relative;
 }
 
-
-/* =====================================================
-   HOME BUTTON CONTAINER
-===================================================== */
-
-.home-buttons {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 15px;
-
-  flex-wrap: wrap;
+body.light-mode .home-page {
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(79, 70, 229, 0.12), transparent 50%),
+    radial-gradient(circle at 90% 40%, rgba(6, 182, 212, 0.08), transparent 45%),
+    #f8fafc;
+  color: #0f172a;
 }
-
-
-/* =====================================================
-   GET STARTED + LOGIN
-   SAME AS NAVBAR BUTTON
-===================================================== */
-
-.home-action-btn {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 145px;
-  height: 48px;
-
-  padding: 0;
-
-  box-sizing: border-box;
-
-  /* Same yellow as Navbar */
-  background: #facc15;
-
-  border: 2px solid #facc15;
-
-  border-radius: 8px;
-
-  /* BLACK/DARK FONT */
-  color: #000000 !important;
-
-  text-decoration: none !important;
-
-  font-size: 16px;
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-}
-
-
-/* =====================================================
-   HOVER
-===================================================== */
-
-.home-action-btn:hover {
-  background: #eab308;
-
-  border-color: #eab308;
-
-  /* Keep font black */
-  color: #000000 !important;
-
-  text-decoration: none !important;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 7px 18px rgba(234, 179, 8, 0.4);
-}
-
-
-/* =====================================================
-   VISITED
-===================================================== */
-
-.home-action-btn:visited {
-  color: #000000 !important;
-}
-
-
-/* =====================================================
-   ACTIVE
-===================================================== */
-
-.home-action-btn:active {
-  color: #000000 !important;
-
-  transform: translateY(0);
-
-  box-shadow: none;
-}
-
-
-/* =====================================================
-   FOCUS
-===================================================== */
-
-.home-action-btn:focus {
-  color: #000000 !important;
-
-  outline: none;
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .home-buttons {
-    gap: 12px;
-  }
-
-  .home-action-btn {
-    width: 140px;
-    height: 46px;
-
-    font-size: 15px;
-  }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .home-buttons {
-    flex-direction: column;
-
-    gap: 12px;
-  }
-
-  .home-action-btn {
-    width: 180px;
-
-    height: 46px;
-
-    font-size: 15px;
-  }
-
-}
-
-
-/* =====================================================
-   HOME BUTTON CONTAINER
-===================================================== */
-
-.home-buttons {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 15px;
-
-  flex-wrap: wrap;
-}
-
-
-/* =====================================================
-   GET STARTED + LOGIN
-   SAME COLOR
-   SAME SIZE
-   SAME DESIGN
-===================================================== */
-
-.home-action-btn {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 145px;
-  height: 48px;
-
-  padding: 0;
-
-  box-sizing: border-box;
-
-  background: #facc15;
-
-  border: 2px solid #facc15;
-
-  border-radius: 8px;
-
-  color: #172033;
-
-  text-decoration: none;
-
-  font-size: 16px;
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-}
-
-
-/* =====================================================
-   HOVER
-===================================================== */
-
-.home-action-btn:hover {
-  background: #eab308;
-
-  border-color: #eab308;
-
-  color: #172033;
-
-  text-decoration: none;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 7px 18px rgba(234, 179, 8, 0.4);
-}
-
-
-/* =====================================================
-   ACTIVE
-===================================================== */
-
-.home-action-btn:active {
-  transform: translateY(0);
-
-  box-shadow: none;
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 768px) {
-
-  .home-buttons {
-    gap: 12px;
-  }
-
-  .home-action-btn {
-    width: 140px;
-    height: 46px;
-
-    font-size: 15px;
-  }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .home-buttons {
-    flex-direction: column;
-
-    gap: 12px;
-  }
-
-  .home-action-btn {
-    width: 180px;
-
-    height: 46px;
-
-    font-size: 15px;
-  }
-
-}
-
 
 /* =====================================================
    HERO SECTION
-===================================================== */
-
-.home-hero {
-  width: 100%;
-  min-height: 620px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 80px 20px;
-
-  box-sizing: border-box;
+   ===================================================== */
+.home-page > .container.home-hero {
+  max-width: 1040px;
+  padding-top: clamp(64px, 12vh, 120px);
+  padding-bottom: clamp(60px, 10vh, 96px);
+  position: relative;
+  z-index: 2;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
-.home-container {
-  width: 100%;
-  max-width: 1000px;
-
-  margin: 0 auto;
-}
-
-
-/* =====================================================
-   MAIN TITLE
-===================================================== */
-
-.home-title {
-  margin: 0;
-
-  font-size: clamp(
-    42px,
-    7vw,
-    76px
-  );
-
-  font-weight: 800;
-
-  line-height: 1.1;
-
-  letter-spacing: -1px;
-
+.home-page > .container > h1 {
+  max-width: 920px;
+  margin-right: auto;
+  margin-left: auto;
   color: #ffffff;
-
-  text-shadow:
-    0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 850;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 
+body.light-mode .home-page > .container > h1 {
+  color: #0f172a;
+  text-shadow: none;
+}
 
-/* =====================================================
-   SUBTITLE
-===================================================== */
-
-.home-subtitle {
+.home-page > .container > p {
   max-width: 700px;
-
-  margin: 28px auto 0;
-
-  font-size: clamp(
-    17px,
-    2.5vw,
-    22px
-  );
-
-  line-height: 1.6;
-
-  color: rgba(255, 255, 255, 0.92);
+  margin-right: auto;
+  margin-left: auto;
+  color: #cbd5e1;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  line-height: 1.65;
+  font-weight: 450;
 }
 
+body.light-mode .home-page > .container > p {
+  color: #475569;
+}
 
 /* =====================================================
-   BUTTON CONTAINER
-===================================================== */
-
+   HERO ACTION BUTTONS
+   ===================================================== */
 .home-buttons {
   display: flex;
-
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
-
-  gap: 18px;
-
-  margin-top: 45px;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px !important;
 }
 
-
-/* =====================================================
-   COMMON BUTTON
-===================================================== */
-
-.home-btn {
+.home-action-btn {
   display: inline-flex;
-
+  min-width: 160px;
+  min-height: 50px;
   align-items: center;
   justify-content: center;
-
-  min-width: 150px;
-
-  min-height: 52px;
-
-  padding: 13px 28px;
-
-  border-radius: 10px;
-
-  font-size: 17px;
-
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
   font-weight: 700;
-
+  letter-spacing: -0.01em;
   text-decoration: none;
-
-  cursor: pointer;
-
-  box-sizing: border-box;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease;
+  transition: all var(--transition-fast);
 }
 
-
-/* =====================================================
-   GET STARTED BUTTON
-===================================================== */
-
-.home-btn-register {
-  background: #facc15;
-
-  color: #111827;
-
-  border: 2px solid #facc15;
-
-  box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.18);
-}
-
-
-/* GET STARTED HOVER */
-
-.home-btn-register:hover {
-  background: #fde047;
-
-  color: #111827;
-
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.25);
-}
-
-
-/* =====================================================
-   LOGIN BUTTON
-===================================================== */
-
-.home-btn-login {
-  background: transparent;
-
+.home-buttons a:first-child {
+  background: linear-gradient(135deg, var(--color-primary), #6366f1);
   color: #ffffff;
-
-  border: 2px solid #ffffff;
-
-  box-shadow:
-    0 4px 15px rgba(0, 0, 0, 0.12);
+  border: 1px solid transparent;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
 }
 
+.home-buttons a:first-child:hover {
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-primary));
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.5);
+}
 
-/* LOGIN HOVER */
+.home-buttons a:last-child {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+}
 
-.home-btn-login:hover {
+.home-buttons a:last-child:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+body.light-mode .home-buttons a:last-child {
   background: #ffffff;
-
-  color: #4f46e5;
-
-  border-color: #ffffff;
-
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.25);
+  border-color: #cbd5e1;
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
 }
 
-
-/* =====================================================
-   BUTTON ACTIVE
-===================================================== */
-
-.home-btn:active {
-  transform: translateY(0);
+body.light-mode .home-buttons a:last-child:hover {
+  background: #f8fafc;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
-
-/* =====================================================
-   BUTTON FOCUS
-===================================================== */
-
-.home-btn:focus {
-  outline: none;
+.home-action-btn:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 3px;
 }
 
-
 /* =====================================================
-   KEYBOARD ACCESSIBILITY
-===================================================== */
-
-.home-btn:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.8);
-
-  outline-offset: 4px;
+   FEATURES SECTION
+   ===================================================== */
+.home-page #features {
+  position: relative;
+  z-index: 2;
+  padding-top: 60px;
+  padding-bottom: 70px;
 }
 
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 991px) {
-
-  .home-hero {
-    min-height: 560px;
-
-    padding:
-      70px 20px;
-  }
-
-  .home-title {
-    font-size: 55px;
-  }
-
-  .home-subtitle {
-    font-size: 19px;
-  }
-
+.home-page #features > h2 {
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px !important;
 }
 
+body.light-mode .home-page #features > h2 {
+  color: #0f172a;
+}
+
+.home-page #features .card {
+  background: rgba(23, 34, 54, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  padding: 32px 24px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.home-page #features .card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 18px 40px rgba(79, 70, 229, 0.2);
+}
+
+body.light-mode .home-page #features .card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .home-page #features .card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 16px 36px rgba(79, 70, 229, 0.12);
+}
+
+.home-page #features .card h4 {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+body.light-mode .home-page #features .card h4 {
+  color: #0f172a;
+}
+
+.home-page #features .card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+body.light-mode .home-page #features .card p {
+  color: #64748b;
+}
 
 /* =====================================================
-   MOBILE
-===================================================== */
+   ABOUT SECTION
+   ===================================================== */
+.home-page #about {
+  position: relative;
+  z-index: 2;
+  padding-top: 60px;
+  padding-bottom: 90px;
+}
 
-@media (max-width: 767px) {
+.home-page #about h2 {
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
 
-  .home-hero {
-    min-height: 520px;
+body.light-mode .home-page #about h2 {
+  color: #0f172a;
+}
 
-    padding:
-      60px 18px;
-  }
+.home-page #about .lead {
+  color: #cbd5e1;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
 
+body.light-mode .home-page #about .lead {
+  color: #334155;
+}
 
-  .home-title {
-    font-size: 42px;
+.home-page #about p {
+  color: #94a3b8;
+  font-size: 1rem;
+  line-height: 1.7;
+}
 
-    line-height: 1.15;
-  }
+body.light-mode .home-page #about p {
+  color: #64748b;
+}
 
+.home-page #about .bg-white {
+  background: rgba(23, 34, 54, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(16px);
+  padding: 40px 32px !important;
+  transition: transform var(--transition-fast);
+}
 
-  .home-subtitle {
-    margin-top: 20px;
+.home-page #about .bg-white:hover {
+  transform: translateY(-4px);
+}
 
-    font-size: 16px;
+body.light-mode .home-page #about .bg-white {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a !important;
+}
 
-    line-height: 1.5;
-  }
+.home-page #about .bg-white h4 {
+  color: #ffffff;
+  margin-top: 14px;
+}
 
+body.light-mode .home-page #about .bg-white h4 {
+  color: #0f172a;
+}
 
+.home-page #about .bg-white p {
+  color: #94a3b8 !important;
+  margin-top: 6px;
+}
+
+body.light-mode .home-page #about .bg-white p {
+  color: #64748b !important;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+@media (max-width: 768px) {
   .home-buttons {
     flex-direction: column;
-
     width: 100%;
-
-    gap: 14px;
-
-    margin-top: 35px;
   }
 
-
-  .home-btn {
+  .home-action-btn {
     width: 100%;
-
-    max-width: 280px;
-
-    min-height: 50px;
-
-    font-size: 16px;
+    max-width: 320px;
   }
-
 }
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
 
 @media (max-width: 480px) {
-
-  .home-hero {
-    min-height: 500px;
-
-    padding:
-      50px 15px;
+  .home-page > .container.home-hero {
+    padding-left: 20px;
+    padding-right: 20px;
   }
-
-
-  .home-title {
-    font-size: 34px;
-  }
-
-
-  .home-subtitle {
-    font-size: 15px;
-  }
-
-
-  .home-buttons {
-    margin-top: 30px;
-  }
-
-
-  .home-btn {
-    max-width: 250px;
-
-    min-height: 48px;
-
-    padding:
-      11px 20px;
-
-    font-size: 15px;
-  }
-
-}
-
-
-/* =====================================================
-   VERY SMALL DEVICES
-===================================================== */
-
-@media (max-width: 360px) {
-
-  .home-title {
-    font-size: 30px;
-  }
-
-
-  .home-subtitle {
-    font-size: 14px;
-  }
-
-
-  .home-btn {
-    max-width: 230px;
-  }
-
 }

@@ -6,6 +6,8 @@ import React, {
 import { toast } from "react-toastify";
 import Sidebar from "../components/layout/Sidebar";
 import API from "../services/api";
+import { formatBookletAnswer, formatBookletSource } from "../utils/bookletDisplay";
+import "./History.css";
 
 function History() {
   const [history, setHistory] = useState([]);
@@ -295,8 +297,18 @@ function History() {
                         </strong>
 
                         <p className="mt-2 mb-0">
-                          {chat.answer}
+                          {formatBookletAnswer(chat.answer)}
                         </p>
+                        {chat.sources?.length > 0 && (
+                          <div className="chat-source-list mt-3" aria-label="Answer sources">
+                            <span>From the booklets</span>
+                            {chat.sources.map((source) => (
+                              <span className="chat-source-chip" key={source}>
+                                {formatBookletSource(source)}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </>
                   )}

@@ -1,59 +1,34 @@
 import React from "react";
+import { formatBookletAnswer, formatBookletSource } from "../../utils/bookletDisplay";
 
-function Message({ question, answer }) {
+function Message({ question, answer, sources = [] }) {
   return (
-    <div>
-
-      {/* User Message */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginBottom: "15px",
-        }}
-      >
-        <div
-          style={{
-            background: "#4F46E5",
-            color: "white",
-            padding: "12px 18px",
-            borderRadius: "15px",
-            maxWidth: "70%",
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          👤 {question}
+    <article className="chat-message">
+      <div className="chat-message-row chat-message-user">
+        <div className="chat-message-content">
+          <span className="chat-message-label">You</span>
+          <div className="chat-message-bubble">{question}</div>
         </div>
       </div>
 
-      {/* AI Message */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          marginBottom: "25px",
-        }}
-      >
-        <div
-          style={{
-            background: "#F3F4F6",
-            color: "#111827",
-            padding: "15px 20px",
-            borderRadius: "15px",
-            maxWidth: "75%",
-            whiteSpace: "pre-wrap",
-            lineHeight: "1.9",
-            fontSize: "16px",
-            wordBreak: "break-word",
-          }}
-        >
-          🤖
-          <br />
-          {answer}
+      <div className="chat-message-row chat-message-assistant">
+        <span className="chat-assistant-avatar" aria-hidden="true">✦</span>
+        <div className="chat-message-content">
+          <span className="chat-message-label">PU PIET Dep.</span>
+          <div className="chat-message-bubble">{formatBookletAnswer(answer)}</div>
+          {sources.length > 0 && (
+            <div className="chat-source-list" aria-label="Answer sources">
+              <span>From the booklets</span>
+              {sources.map((source) => (
+                <span className="chat-source-chip" key={source}>
+                  {formatBookletSource(source)}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-
-    </div>
+    </article>
   );
 }
 
